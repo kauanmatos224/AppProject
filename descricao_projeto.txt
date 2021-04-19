@@ -1,0 +1,34 @@
+Banco de Dados: SQLite;
+Linguagem: Kotlin e Java;
+Interface:
+	activity de carregamento e abertura do app;
+	activity de menu (onde exibe os objetos em layout de tabela, com fucionalidades de gerenciamento);
+		Nível hirearquíco de transição do Menu:
+		activity dinâmica de alteração (página da qual configura / altera / excluir um material específico);
+		activity de cadastramento (qual vai cadastrar um item);
+		activity de dinâmica de empréstimo (da qual exibe um item selecionado e configura um lembrete de reobtenção do item).
+		activity de primeira execução;
+__________________________________________________________________________________________________________________________________________________________________
+Classes:
+	-BancoDeDados: classe da qual terá método de inserção, exclusão e update de dados. Fazendo as respectivas alterações em tabelas,
+com dados vindos de parâmetros das activitys acima (pega o valor de campos de entrada e imagem, envia como parâmetro para o método dessa classe);
+
+	-activity principal: configura a exbição de carregamento do app, e chama a activity menu;
+	-activity menu: exibe os itens em formato de tabela, ao selecionar um deles, chamaria a activity dinâmica. No caso de exclusão, chamar a classe BancoDeDados;
+	-activity dinâmica: aqui captura os dados para alterações ou exclusão, enviando parâmetros(dados do item, imagem, etc) e chamando a classe Banco de Dados;
+	-activity dinâmica de empréstimo: ao estar selecionado uma ação de emprestar objeto no menu, abre essa activity e configura o emprestimo e lembrete;
+
+*Na primeira execução do app, a activity de primeira execução é ativada da qual contera pequena introdução do app e direciona a activity de cadastramento dos itens;
+__________________________________________________________________________________________________________________________________________________________________
+Modelagem do Banco de Dados:
+	Nome do banco: bd_application;
+	tabelas:
+		app_state --> corresponde ao estado da aplicação, usualmente usada para verificar a primeira execução do app
+		do qual se contiver um valor no campo "field_state": "first", então chama a activity de primeira execução;
+		descrição: campo de nome "field_state" como primary key;
+		
+		user_items --> tabela que armazena os itens escolares;
+		descrição: campos "id_item"(número correspondente a um produto), "name" (nome personalizado, ex: caneta bic...),
+"category" (categoria do produto, caderno, lápis, etc.), "state" (estado do produto, se emprestado, a comprar ou disponível);
+		
+		360x720

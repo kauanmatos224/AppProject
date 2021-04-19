@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Security Aplication</string>
+
+    <string-array name="listCateg">
+        <item>Caneta</item>
+        <item></item>
+    </string-array>
+</resources>

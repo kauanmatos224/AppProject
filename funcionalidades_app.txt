@@ -1,0 +1,20 @@
+Funcionalidades do App:
+
+Controle dos produtos / materiais:
+1 - cadastro, exibição(com filtro por meio dos atributos);
+2 - exclusão.
+3 - definir lembretes de compras e emprestimos;
+4 - gerenciar peso da mochila ou recipiente dos materiais à escola(status);
+
+Atributos dos materiais:
+1 - classe, ex: caneta, caderno... cor branca, roxo etc;
+2 - status: a comprar ou em falta, emprestado, levar ou não levar (gerenciar o peso da mochila);
+
+Lembretes:
+1 - Lembrar quando obter o produto emprestado;
+2 - Lembrar quando comprar em caso seja programado data/hora;
+
+
+Funcionalidade Extra: Avisar em tempo real locais próximos (raio de 200m) do usuário, que 
+possa ser comprado um produto em falta, caso tenha.
+Com o uso do Google Maps e necessitando de permissão do uso da localização.
