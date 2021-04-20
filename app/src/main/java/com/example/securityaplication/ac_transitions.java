@@ -20,5 +20,8 @@ public class ac_transitions extends AppCompatActivity {
     }
 
 
-
+    public void btnMain(View view){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
 }
