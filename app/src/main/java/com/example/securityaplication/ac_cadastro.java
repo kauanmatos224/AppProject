@@ -11,6 +11,7 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -89,10 +90,13 @@ public class ac_cadastro extends AppCompatActivity {
     public void txtRemoveClick_removeImg(View view){
 
         ImageView iv = (ImageView) findViewById(R.id.imageView);
-        iv.setImageBitmap(null);
+
+        Drawable drawable= getResources().getDrawable(R.drawable.img_add);
+        iv.setImageDrawable(drawable); //seta a imagem de seleção de foto do item (imagem padrão)
 
         TextView txtRemove = (TextView)findViewById(R.id.txtRemove);
         txtRemove.setVisibility(View.GONE);
+
 
     }
 }
