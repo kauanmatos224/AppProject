@@ -25,28 +25,37 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        BottomNavigationView bottomNavigationView = (BottomNavigationView)findViewById(R.id.bottomNavigationView);
+        //bottom nav
+        BottomNavigationView btnNav = findViewById(R.id.bottomNavigationview);
+        btnNav.setOnNavigationItemSelectedListener(navListener);
 
-        bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
-
-
-
+        //setting home fragment as main fragment
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_layout,new HomeFragment()).commit();
     }
 
+    //listener nav bar
     private BottomNavigationView.OnNavigationItemSelectedListener navListener = new
             BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                    Fragment selectedFragment = null;
+                    switch (item.getItemId()){
+                        case R.id.miHome:
+                            selectedFragment = new HomeFragment();
+                            break;
 
-                    if(item.getItemId() == R.id.miHome){
-                        Intent trocar = new Intent(MainActivity.this, MainActivity.class);
-                        MainActivity.this.startActivity(trocar);
+                        case R.id.miAdd:
+                            selectedFragment = new AddFragment();
+                            break;
                     }
-                    else if (item.getItemId() == R.id.miAdd){
-                        Intent trocar = new Intent(MainActivity.this,ac_cadastro.class);
-                        MainActivity.this.startActivity(trocar);
-                    }
-                    return false;
+
+                    //begin transaction
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.fragment_layout
+                                    ,selectedFragment).commit();
+
+                    return true;
                 }
             };
 
