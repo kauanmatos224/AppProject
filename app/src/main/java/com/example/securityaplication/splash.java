@@ -73,7 +73,16 @@ public class splash extends AppCompatActivity {
                         if (cur.getInt (0) == 0) {
                             //nesse caso verifica-se que não há registros no banco.
                             Toast.makeText(getBaseContext(),"Não há nenhum material ainda cadastrado", Toast.LENGTH_LONG).show();
-                            chamaTelaCadastro();
+
+                            try{
+                                db.close();
+
+                               chamaTelaCadastro();
+
+                            }catch(Exception erroClosingDB){
+                                Toast.makeText(getBaseContext(),"Houve algum erro, tente novamente mais tarde :(" +
+                                        "\n"+"erro: "+erroClosingDB, Toast.LENGTH_LONG).show();
+                            }
 
                         }
                         else {

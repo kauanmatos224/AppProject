@@ -2,8 +2,16 @@
     <string name="app_name">Security Aplication</string>
     <string name="sqlVerTabela">SELECT EXISTS (SELECT 1 FROM tb_mats)</string>
 
-    <string-array name="listCateg">
-        <item>Caneta</item>
-        <item></item>
+    <string name="stringCateg">Todos</string>
+    <string-array name="array_ListaCateg">
+        <item>Apontadores</item>
+        <item>Canetas</item>
+        <item>Cadernos e Agendas</item>
+        <item>Objetos de Medida</item>
+        <item>Pastas</item>
+        <item>Tubos de colas</item>
+        <item>Tesouras</item>
+        <item>Vestimentas e Uniformes</item>
+        <item>Outros itens</item>
     </string-array>
 </resources>
