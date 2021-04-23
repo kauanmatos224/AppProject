@@ -27,6 +27,13 @@ public class ac_transitions extends AppCompatActivity {
 
     public void btnItens(View view){
 
+        Intent intent = new Intent(this, Itens_ac.class);
+        startActivity(intent);
+
+    }
+    public void btnMats(View view){
+        Intent intent = new Intent(this, materiais_ac.class);
+        startActivity(intent);
 
     }
 
