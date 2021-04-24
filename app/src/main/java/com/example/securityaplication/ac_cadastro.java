@@ -218,20 +218,22 @@ public class ac_cadastro extends AppCompatActivity {
     }
     public void comprimirImagem(){
 
-       /* if(imgSelecionada=true) {
-            ByteArrayOutputStream stream = new ByteArrayOutputStream();
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 0, stream);
-            byteArray = stream.toByteArray();
-            //compressedBitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+        if(imgSelecionada=true) {
+            if(bitmap!=null) {
+                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.PNG, 80, stream);
+                byteArray = stream.toByteArray();
+                bitmap.recycle();
+                Toast.makeText(getBaseContext(),"Salvou imagem",Toast.LENGTH_LONG).show();
+            }
 
-        }
+        }/*
         else{
-            String pathImgDawable = "R.drawable.sem_foto";
-            Bitmap thumbnail = (BitmapFactory.decodeFile(pathImgDawable));
+            Bitmap bGalery = BitmapFactory.decodeResource(getResources(),R.drawable.sem_foto);
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
-            bitmap.compress(Bitmap.CompressFormat.PNG, 0, stream);
+            bGalery.compress(Bitmap.CompressFormat.PNG, 80, stream);
             byteArray = stream.toByteArray();
-            //compressedBitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+            bGalery.recycle();
         }*/
         inserirDados();
     }
@@ -240,17 +242,12 @@ public class ac_cadastro extends AppCompatActivity {
     private void inserirDados(){
 
         StringBuilder sql = new StringBuilder();
-        sql.append("INSERT INTO tb_mats(nome_item,"+/* img_item,*/ "categoria, descri_item, status, descri_emp, datahora_inicial, datahora_final) VALUES (");
+        sql.append("INSERT INTO tb_mats(nome_item, img_item, categoria, descri_item, status, descri_emp) VALUES (");
         sql.append("'" + txtNome + "',");
-
-        //se não tem imagem selecionada, manda uma imagem "sem_foto.png"
-        //sql.append("'" + byteArray + "',");
-
-
+        sql.append("'" + byteArray + "',");
         sql.append("'" + txtCateg + "',");
 
         if (temDescri = false) {
-
             sql.append("' ',");
         }
         else{
@@ -258,9 +255,7 @@ public class ac_cadastro extends AppCompatActivity {
         }
 
         sql.append("'Disponível',");
-        sql.append("'null',");
-        sql.append("'null',");
-        sql.append("'null'");
+        sql.append("''");
         sql.append(")");
         try {
             db.execSQL(sql.toString());

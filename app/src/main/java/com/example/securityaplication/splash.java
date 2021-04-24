@@ -51,10 +51,8 @@ public class splash extends AppCompatActivity {
                 sql.append("categoria varchar(100),");
                 sql.append("descri_item varchar(100),");
                 sql.append("status varchar(20),");
-                sql.append("descri_emp varchar(100),");
-                sql.append("datahora_inicial varchar(50),");
-                sql.append("datahora_final varchar(50) );" );
-
+                sql.append("descri_emp varchar(100));");
+             
                 try
 
                 {
@@ -93,14 +91,8 @@ public class splash extends AppCompatActivity {
                         }
                     }
 
-
-
-
-
                 }
-                catch(Exception exErro)
-
-                {
+                catch(Exception exErro) {
                     //em caso de erro na criação da tabela.
                     Toast.makeText(getBaseContext(), "Error = " + exErro.getMessage(),
                             Toast.LENGTH_LONG).show();
@@ -125,7 +117,4 @@ public class splash extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
-
-
-
 }
