@@ -76,18 +76,6 @@ public class ac_cadastro extends AppCompatActivity {
 
         //variáveis para armazenar os dados de entrada(nome do item, imagem, descrição, categoria)
         //para cadastro.
-        //abaixo não tem a variável para imagem porque ela já está acima "bitmap".
-        inputNome = (EditText)findViewById(R.id.inputNome);
-        inputDescri = (EditText)findViewById(R.id.inputDescri);
-        spnCateg = (Spinner)findViewById(R.id.spinnerCateg);
-        //acima pega os valores dos widgets, enquanto abaixo converte-os em String para armazenar no Banco.
-        txtCateg = spnCateg.getSelectedItem().toString();
-        txtNome = inputNome.getText().toString();
-        txtDescri = inputDescri.getText().toString();
-        //fim das variáveis de entrada.
-
-
-
 
         //abre o Banco de Dados;
         //db = openOrCreateDatabase("database_sm", MODE_PRIVATE, null);
@@ -177,6 +165,16 @@ public class ac_cadastro extends AppCompatActivity {
         //Todos os campos serão obrigatórios, exceto Descrição e imagem.
         //obrigatórios: Nome do Item e Categoria.
 
+        //abaixo não tem a variável para imagem porque ela já está acima "bitmap".
+        inputNome = (EditText)findViewById(R.id.inputNome);
+        inputDescri = (EditText)findViewById(R.id.inputDescri);
+        spnCateg = (Spinner)findViewById(R.id.spinnerCateg);
+        //acima pega os valores dos widgets, enquanto abaixo converte-os em String para armazenar no Banco.
+        txtCateg = spnCateg.getSelectedItem().toString();
+        txtNome = inputNome.getText().toString();
+        txtDescri = inputDescri.getText().toString();
+        //fim das variáveis de entrada.
+
         if(txtNome == ""){
             temNome = false;
 
@@ -196,15 +194,22 @@ public class ac_cadastro extends AppCompatActivity {
 
                 //depois de verificar todas as entradas (obs: exceto imagem que já é tratada anteriormente)
                 //chama método para inserir os dados na tabela de itens do Banco de Dados "database_sm"
-                if(txtDescri == ""){
-                    temDescri = false;
-                    comprimirImagem();
 
+                if(spnCateg.getSelectedItemPosition() == 0) {
+                    Toast.makeText(getBaseContext(),"Selecione uma categoria do material.", Toast.LENGTH_LONG).show();
+                    spnCateg.requestFocus(); //seta focus na cetogoria.
                 }
-                else if(txtDescri !=""){
-                    temDescri = true;
-                    comprimirImagem();
+                else {
+                    if (txtDescri == "") {
+                        temDescri = false;
+                        comprimirImagem();
+
+                    } else if (txtDescri != "") {
+                        temDescri = true;
+                        comprimirImagem();
+                    }
                 }
+
 
             }
         }
@@ -259,12 +264,25 @@ public class ac_cadastro extends AppCompatActivity {
         sql.append(")");
         try {
             db.execSQL(sql.toString());
+            limpaEntradas();
             Toast.makeText(getBaseContext(), "Material cadastrado com sucesso!",
                     Toast.LENGTH_SHORT).show();
+
         } catch (SQLException ex) {
             Toast.makeText(getBaseContext(), sql.toString() + "Erro =  " + ex.getMessage()+"\n"+
                     "Sentimos muito mesmo!!! Tente novamente mais tarde :(", Toast.LENGTH_LONG).show();
         }
     }
+    public void limpaEntradas(){
+        spnCateg.setSelection(0);
+        inputDescri.setText("");
+        inputNome.setText("");
+
+        ImageView iv = (ImageView)findViewById(R.id.imageView);
+        Drawable drawable= getResources().getDrawable(R.drawable.img_add);
+        iv.setImageDrawable(drawable); //seta a imagem de seleção de foto do item (imagem padrão)
+
+    }
+
 
 }

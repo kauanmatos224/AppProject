@@ -4,6 +4,7 @@
 
     <string name="stringCateg">Todos</string>
     <string-array name="array_ListaCateg">
+        <item>Selecionar Categoria</item>
         <item>Apontadores</item>
         <item>Canetas</item>
         <item>Cadernos e Agendas</item>
