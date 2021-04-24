@@ -53,9 +53,13 @@ public class HomeFragment extends Fragment {
                 "text 3",
 
         };
+        // KAUAN--> SÓ QUEBREI ESSA PARTE EM DUAS PARA FICAR MAIS LEGIVEL
+        ListView listView;// CRIA OBJETO LISTVIEW
+        listView = (ListView) view.findViewById(R.id.listView); // REFERENCIA O OBJETO AO SEU ID XML
 
-        ListView listView = (ListView) view.findViewById(R.id.listView);
 
+
+        //CRIA ADAPTER PARA ENVIAR OS ITENS DO ARRAY DE LISTA "MENUITENS" PARA O OBJETO LISTVIEW
         ArrayAdapter<String> listViewAdapter = new ArrayAdapter<String>(
                 getActivity(),android.R.layout.simple_list_item_1,
                 menuItems
