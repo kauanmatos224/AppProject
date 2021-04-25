@@ -19,6 +19,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -35,6 +36,7 @@ import android.database.sqlite.SQLiteDatabase;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Arrays;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -44,7 +46,6 @@ public class ac_cadastro extends AppCompatActivity {
     //variáveis e constantes para o uso de upload de imagem
     //***CONTEM UMA PERMISSÃO NO MANIFEST.XML PARA ESSE CÓDIGO FUNCIONAR (UPLOAD DE IMAGEM).
     public static final int IMAGEM_INTERNA = 12;
-    public Bitmap bitmap; //variável da imagem em bitmap.
     public Byte imgByte; //variável com a imagem convertida em Byte para armazenar.
     public final int PERMISSAO_REQUEST = 2; //constante para requerir permissão do usuário para acessar galeria.
     public boolean imgSelecionada = false; //verifica se há imagem selecionada.
@@ -55,6 +56,7 @@ public class ac_cadastro extends AppCompatActivity {
     public boolean temDescri = false;
 
     byte[] byteArray; //imagem em bytes (Blob)
+    Bitmap thumbnail;
 
     //variáveis que vão tratar a entrada.
     String txtCateg;
@@ -111,13 +113,10 @@ public class ac_cadastro extends AppCompatActivity {
             int columnIndex = c.getColumnIndex(filePath[0]);
             String picturePath = c.getString(columnIndex);
             c.close();
-            Bitmap thumbnail = (BitmapFactory.decodeFile(picturePath));
+            thumbnail = (BitmapFactory.decodeFile(picturePath));
             ImageView iv = (ImageView) findViewById(R.id.imageView);
             iv.setImageBitmap(thumbnail);
             imgSelecionada = true;
-            bitmap = thumbnail;
-
-            //imgByte = bitmap.
 
             TextView txtRemove = (TextView)findViewById(R.id.txtRemove);
             txtRemove.setVisibility(View.VISIBLE);
@@ -150,7 +149,6 @@ public class ac_cadastro extends AppCompatActivity {
         iv.setImageDrawable(drawable); //seta a imagem de seleção de foto do item (imagem padrão)
 
         TextView txtRemove = (TextView)findViewById(R.id.txtRemove);
-        bitmap = null;
         imgSelecionada = false;
         txtRemove.setVisibility(View.GONE);
 
@@ -216,26 +214,25 @@ public class ac_cadastro extends AppCompatActivity {
 
 
     }
-    public void comprimirImagem(){
+    public void comprimirImagem() {
 
-        if(imgSelecionada=true) {
-            if(bitmap!=null) {
-                ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.PNG, 80, stream);
-                byteArray = stream.toByteArray();
-                bitmap.recycle();
-                Toast.makeText(getBaseContext(),"Salvou imagem",Toast.LENGTH_LONG).show();
-            }
+        if(imgSelecionada) {
 
-        }/*
-        else{
-            Bitmap bGalery = BitmapFactory.decodeResource(getResources(),R.drawable.sem_foto);
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
-            bGalery.compress(Bitmap.CompressFormat.PNG, 80, stream);
+            thumbnail.compress(Bitmap.CompressFormat.PNG, 80, stream);
             byteArray = stream.toByteArray();
-            bGalery.recycle();
-        }*/
-        inserirDados();
+            thumbnail.recycle();
+            inserirDados();
+        }
+        else{
+            Bitmap bitmap = BitmapFactory.decodeResource(this.getResources(), R.drawable.sem_foto);
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.PNG, 80, stream);
+            byteArray = stream.toByteArray();
+            bitmap.recycle();
+            inserirDados();
+        }
+
     }
 
 
@@ -244,7 +241,8 @@ public class ac_cadastro extends AppCompatActivity {
         StringBuilder sql = new StringBuilder();
         sql.append("INSERT INTO tb_mats(nome_item, img_item, categoria, descri_item, status, descri_emp) VALUES (");
         sql.append("'" + txtNome + "',");
-        sql.append("'" + byteArray + "',");
+        sql.append("'").append(byteArray).append("',");
+
         sql.append("'" + txtCateg + "',");
 
         if (temDescri = false) {
@@ -272,10 +270,13 @@ public class ac_cadastro extends AppCompatActivity {
         spnCateg.setSelection(0);
         inputDescri.setText("");
         inputNome.setText("");
-
         ImageView iv = (ImageView)findViewById(R.id.imageView);
         Drawable drawable= getResources().getDrawable(R.drawable.img_add);
         iv.setImageDrawable(drawable); //seta a imagem de seleção de foto do item (imagem padrão)
+
+        TextView txtRemove = (TextView)findViewById(R.id.txtRemove);
+        txtRemove.setVisibility(View.GONE);
+
 
     }
 

@@ -41,7 +41,5 @@ public class ItemList {
         return txtStatus;
     }
 
-    public void setTxtStatus(String txtStatus) {
-        this.txtStatus = txtStatus;
-    }
+    public void setTxtStatus(String txtStatus) { this.txtStatus = txtStatus; }
 }

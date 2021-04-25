@@ -60,11 +60,11 @@ public class MainActivity extends AppCompatActivity {
             };
 
 
-    public void Transit(){
+    /*public void Transit(){
         Intent intent = new Intent(this, splash.class);
         startActivity(intent);
     }
-
+    */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater=getMenuInflater();
