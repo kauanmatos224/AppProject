@@ -141,6 +141,7 @@ public class ac_cadastro extends AppCompatActivity {
         }
     }
 
+    //método OnClick no TextView vermelho de remoção da imagem.
     public void txtRemoveClick_removeImg(View view){
 
         ImageView iv = (ImageView) findViewById(R.id.imageView);
@@ -154,6 +155,7 @@ public class ac_cadastro extends AppCompatActivity {
 
 
     }
+    //método com ação onClick do botão de cadastramento.
     public void btnCadastra(View view){
         //Aqui, chama método que verifica a entrada pelo usuário
         verificarEntradas();
@@ -214,6 +216,8 @@ public class ac_cadastro extends AppCompatActivity {
 
 
     }
+
+    //abaixo, comprimi a imagem de entrada adquirida no método onActivityResult, de Bitmap para Array em Bytes ( Byte[] ).
     public void comprimirImagem() {
 
         if(imgSelecionada) {
@@ -236,6 +240,8 @@ public class ac_cadastro extends AppCompatActivity {
     }
 
 
+    //monta uma consulta SQL com StringBuilder e append, inserindo os dados de entrada na consulta, e executa-a gravando na
+    //tabela tb_mats da database.
     private void inserirDados(){
 
         StringBuilder sql = new StringBuilder();
@@ -266,6 +272,8 @@ public class ac_cadastro extends AppCompatActivity {
                     "Sentimos muito mesmo!!! Tente novamente mais tarde :(", Toast.LENGTH_LONG).show();
         }
     }
+
+    //limpa as entradas de dados.
     public void limpaEntradas(){
         spnCateg.setSelection(0);
         inputDescri.setText("");
@@ -276,6 +284,10 @@ public class ac_cadastro extends AppCompatActivity {
 
         TextView txtRemove = (TextView)findViewById(R.id.txtRemove);
         txtRemove.setVisibility(View.GONE);
+
+        //ao terminar cadastro do item, vai para a activity de exibição dos mesmos.
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
 
 
     }

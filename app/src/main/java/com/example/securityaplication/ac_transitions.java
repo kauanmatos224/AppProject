@@ -16,7 +16,7 @@ public class ac_transitions extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ac_transitions);
 
-        // CRIA BOTÃO PARA FAZER A TRANCIÇAÕ
+        // CRIA BOTÃO PARA FAZER A TRANSIÇÃO.
         btnLbt = (Button) findViewById(R.id.btnLbt);
 
         btnLbt.setOnClickListener(new View.OnClickListener() {
@@ -31,6 +31,8 @@ public class ac_transitions extends AppCompatActivity {
 
     }
 
+    //MÉTODOS QUE SÃO EXECUTADOS AO CLICAR NOS SEGUINTES BOTÕES,
+    //CUJOS COM OS MESMOS NOMES DOS MÉTODOS.
     public void btnCad(View view){
         Intent intent = new Intent(this, ac_cadastro.class);
         startActivity(intent);
@@ -52,7 +54,7 @@ public class ac_transitions extends AppCompatActivity {
         Intent intent = new Intent(this, materiais_ac.class);
         startActivity(intent);
 
-    }
+    }//FIM DOS MÉTODOS ONCLICK DOS BOTÕES COM ATRIBUTO ONCLICK NO DESIGN.
 
     // REALIZA TRANSIÇAÕ PARA A ACTIVITY LEMBRETE
     private void Lembrete(){
