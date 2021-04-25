@@ -5,13 +5,30 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 
 public class ac_transitions extends AppCompatActivity {
+
+    Button btnLbt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ac_transitions);
+
+        // CRIA BOTÃO PARA FAZER A TRANCIÇAÕ
+        btnLbt = (Button) findViewById(R.id.btnLbt);
+
+        btnLbt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                Lembrete();
+            }
+        });
+
+
+
     }
 
     public void btnCad(View view){
@@ -35,6 +52,12 @@ public class ac_transitions extends AppCompatActivity {
         Intent intent = new Intent(this, materiais_ac.class);
         startActivity(intent);
 
+    }
+
+    // REALIZA TRANSIÇAÕ PARA A ACTIVITY LEMBRETE
+    private void Lembrete(){
+        Intent intent = new Intent(this, lembrete.class);
+        startActivity(intent);
     }
 
 

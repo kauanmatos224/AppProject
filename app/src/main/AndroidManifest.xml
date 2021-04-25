@@ -17,12 +17,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SecurityAplication">
+        <activity android:name=".lembrete"></activity>
         <activity android:name=".materiais_ac">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <!-- Abaixo a activity de itens -->
+        </activity> <!-- Abaixo a activity de itens -->
         <activity android:name=".Itens_ac">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
