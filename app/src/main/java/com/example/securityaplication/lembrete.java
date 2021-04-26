@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
+import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -42,6 +44,8 @@ public class lembrete extends AppCompatActivity {
     String desc = "";
 
     String nome ="";
+
+    String TMPN = "";
 
     //--------------------CRIAÇAÕ DE VARIAVEIS-------------------------
 
@@ -85,26 +89,18 @@ public class lembrete extends AppCompatActivity {
                 //NOME RECEBE O VALOR DO OBJETO EDITTEXT NOME
                 nome = txtNlbt.getText().toString();
 
+
+                TmpNotification();
+                /*
                 notificaçao();
                 transiçao();
-
+                */
 
 
 
             }
         });
         //-------------------BOTÃO---------/////////////////////////////////////////---------
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -135,41 +131,7 @@ public class lembrete extends AppCompatActivity {
     //-----------CRIA O CANAL DA NOTIFICAÇÃO---------------
 
 
-    // CONSTROI E EXIBE A NOTIFICAÇAÕ
-    private void notificaçao(){
-
-        //----------CRIA NOTIFICAÇAÕ PARA SER EXIBIDA NA BARRA DE STATUS------------
-
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
-                //CONFIGURA O RSPECTIVO CANAL DA NOTIFICAÇAÕ COM SEU ID ESPECIFICO
-
-                .setSmallIcon(R.drawable.icn) //ICN --> ICONE DA NOTIFICAÇÃO
-
-                .setContentTitle(nome) //nome_da_notificação
-
-                .setContentText(desc) //TEXTO DA NOTIFICAÇAÕ DE UMA ONICA LINHA
-
-                .setStyle(new NotificationCompat.BigTextStyle()
-                        .bigText(desc)) //TEXTO_DA_NOTIFICAÇÃO MAIOR_QUE_UMA_LINHA
-
-                .setPriority(NotificationCompat.PRIORITY_HIGH); // DEFINE A PRIORIDADE DA NOTIFICAÇÃO
-        //--> PRIORIDA DEFINIDA COMO MAXIMA --> EXIBE A NOTIFICAÇAÕ NA BARRA DE STATUS E EMITE UM SOM
-
-        //----------CRIA NOTIFICAÇAÕ PARA SER EXIBIDA NA BARRA DE STATUS-------------------------
-
-
-
-
-        // ---------EXIBE A NOTIFICAÇÃO----------------------------------------------------
-        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
-        //ID DE EXIBIÇÃO DA NOTIFICA ÇÃO-->        !!!! TEM QUE DAR UM JEITO DE ATRIBUIR UM ID QUE SEJA
-        //UNICO PARA A NOTIFICAÇÃO, USANDO UM ARRAY ACHO, OU DEUS SABE LÁ O QUE....
-        int notificationId = 5;
-        notificationManager.notify(notificationId, builder.build());
-        // ---------EXIBE A NOTIFICAÇÃO----------------------------------------------------
-
-
-    }
+    // CONSTROI O CONTEÚDO DA NOTIFICAÇÃO
 
 
     //REALIZA A TRANSIÇÃO PARA A ACTIVITY ANTERIOR
@@ -178,4 +140,33 @@ public class lembrete extends AppCompatActivity {
         startActivity(intent);
     }
 
+
+
+    //------------------NOTIFICAÇÃO COM DETECÇÃO DE TEMPO------------------------------
+    private void TmpNotification(){
+        Intent fullScreenIntent = new Intent(this, CallActivity.class);
+        PendingIntent fullScreenPendingIntent = PendingIntent.getActivity(this, 0,
+                fullScreenIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        NotificationCompat.Builder notificationBuilder =
+                new NotificationCompat.Builder(this, TMPN)
+                        .setSmallIcon(R.drawable.notification_icon)
+                        .setContentTitle("Incoming call")
+                        .setContentText("(919) 555-1234")
+                        .setPriority(NotificationCompat.PRIORITY_HIGH)
+                        .setCategory(NotificationCompat.CATEGORY_CALL)
+
+                        // Use a full-screen intent only for the highest-priority alerts where you
+                        // have an associated activity that you would like to launch after the user
+                        // interacts with the notification. Also, if your app targets Android 10
+                        // or higher, you need to request the USE_FULL_SCREEN_INTENT permission in
+                        // order for the platform to invoke this notification.
+                        .setFullScreenIntent(fullScreenPendingIntent, true);
+
+        Notification incomingCallNotification = notificationBuilder.build();
+
+    }
+    //------------------NOTIFICAÇÃO COM DETECÇÃO DE TEMPO------------------------------
 }
+
+

@@ -20,9 +20,12 @@
         android:layout_marginLeft="10dp"
         android:layout_toRightOf="@+id/imgImagem"
         android:background="#007F00"
+        android:fontFamily="@font/roboto_bold"
+        android:textSize="16dp"
         android:maxLength="30"
         android:maxLines="3"
-        android:text="Nome do Item" />
+        android:text="Nome do Item"
+        android:textColor="@android:color/white" />
 
     <TextView
         android:id="@+id/txtCategoria"
@@ -31,7 +34,10 @@
         android:layout_marginLeft="10dp"
         android:layout_toRightOf="@+id/txtNomeItem"
         android:background="#4daaff"
-        android:text="Categoria do Item" />
+        android:fontFamily="@font/roboto_bold"
+        android:textSize="16dp"
+        android:text="Categoria do Item"
+        android:textColor="@android:color/white" />
 
     <TextView
         android:id="@+id/txtStatus"
@@ -40,7 +46,11 @@
         android:layout_marginLeft="10dp"
         android:layout_toRightOf="@+id/txtCategoria"
         android:background="#bf6767"
-        android:text="Status do item" />
+        android:fontFamily="@font/roboto_bold"
+        android:textSize="16dp"
+        android:includeFontPadding="false"
+        android:text="Status do item"
+        android:textColor="@android:color/white" />
 
 
 
