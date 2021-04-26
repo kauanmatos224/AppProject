@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Menu;
@@ -18,20 +20,21 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
-
-
+    SQLiteDatabase sqlite;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //abre conexão com banco de dados.
+        sqlite = openOrCreateDatabase("database_sm", Context.MODE_PRIVATE, null);
         //bottom nav
         BottomNavigationView btnNav = findViewById(R.id.bottomNavigationview);
         btnNav.setOnNavigationItemSelectedListener(navListener);
 
         //setting home fragment as main fragment
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragment_layout,new HomeFragment()).commit();
+                .replace(R.id.fragment_layout,new HomeFragment(sqlite)).commit();
     }
 
     //listener nav bar
@@ -42,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
                     Fragment selectedFragment = null;
                     switch (item.getItemId()){
                         case R.id.miHome:
-                            selectedFragment = new HomeFragment();
+                            selectedFragment = new HomeFragment(sqlite);
                             break;
 
                         case R.id.miAdd:
