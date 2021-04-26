@@ -40,7 +40,7 @@ public class ItemArrayAdapter extends ArrayAdapter<ItemList> {
 
         TextView txtStatus = convertView.findViewById(R.id.txtStatus);
 
-        imageView.setImageResource(getItem(position).getImgImagem());
+        imageView.setImageBitmap(getItem(position).getImgImagem());
 
         txtNomeItem.setText(getItem(position).getTxtNomeItem());
 

@@ -1,25 +1,25 @@
 package com.example.securityaplication;
 
+import android.graphics.Bitmap;
+
 public class ItemList {
-    int imgImagem;
+    Bitmap imgImagem;
     String txtNomeItem;
     String txtCategoria;
     String txtStatus;
 
-    public ItemList(int imgImagem, String txtNomeItem, String txtCategoria, String txtStatus) {
+    public ItemList(Bitmap imgImagem, String txtNomeItem, String txtCategoria, String txtStatus) {
         this.imgImagem = imgImagem;
         this.txtNomeItem = txtNomeItem;
         this.txtCategoria = txtCategoria;
         this.txtStatus = txtStatus;
     }
 
-    public int getImgImagem() {
+    public Bitmap getImgImagem() {
         return imgImagem;
     }
 
-    public void setImgImagem(int imgImagem) {
-        this.imgImagem = imgImagem;
-    }
+    public void setImgImagem(Bitmap imgImagem) { this.imgImagem = imgImagem; }
 
     public String getTxtNomeItem() {
         return txtNomeItem;

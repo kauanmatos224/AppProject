@@ -1,5 +1,8 @@
 package com.example.securityaplication;
 
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -60,14 +63,31 @@ public class HomeFragment extends Fragment {
                 "text 2",
                 "text 3",
         };*/
-        ItemList test = new ItemList(R.drawable.caneta_teste, "Caneta Bic",
+
+        //Transformando a img da caneta em bitmap
+        Drawable drawable = this.getResources().getDrawable(R.drawable.caneta_teste);
+        Bitmap bitmaptest = ((BitmapDrawable)drawable).getBitmap();
+
+
+        //Criando objetos de teste
+        ItemList test = new ItemList(bitmaptest, "Caneta Bic",
                 "Caneta", "Comigo");
-        ItemList test2 = new ItemList(R.drawable.caneta_teste, "Caneta Bic",
+        ItemList test2 = new ItemList(bitmaptest, "Caneta Bic",
                 "Caneta", "Perdido");
-        ItemList test3 = new ItemList(R.drawable.caneta_teste, "Caneta Bic",
+        ItemList test3 = new ItemList(bitmaptest, "Caneta Bic",
                 "Caneta", "Emprestado");
 
+        //Adicionando esses objetos para a array do listView
         ArrayList<ItemList> ItemList = new ArrayList<>();
+        ItemList.add(test);
+        ItemList.add(test2);
+        ItemList.add(test3);
+        ItemList.add(test);//Varios testes para ver se da pra fazer scroll no home
+        ItemList.add(test2);
+        ItemList.add(test3);
+        ItemList.add(test);
+        ItemList.add(test2);
+        ItemList.add(test3);
         ItemList.add(test);
         ItemList.add(test2);
         ItemList.add(test3);
