@@ -68,12 +68,6 @@ public class lembrete extends AppCompatActivity {
 
 
 
-        // DESC RECEBE O VALOR DO OBJETO EDITTEXT DESCRIÇAÕ
-        desc = txtNotification.getText().toString();
-
-        //NOME RECEBE O VALOR DO OBJETO EDITTEXT NOME
-        nome = txtNlbt.getText().toString();
-
 
 
 
@@ -84,6 +78,13 @@ public class lembrete extends AppCompatActivity {
             public void onClick(View v)
             // Volta para a outra activity
             {
+
+                // DESC RECEBE O VALOR DO OBJETO EDITTEXT DESCRIÇAÕ
+                desc = txtNotification.getText().toString();
+
+                //NOME RECEBE O VALOR DO OBJETO EDITTEXT NOME
+                nome = txtNlbt.getText().toString();
+
                 notificaçao();
                 transiçao();
 
