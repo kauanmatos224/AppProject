@@ -4,6 +4,7 @@ package com.example.securityaplication;
 import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
+import android.util.Log
 import java.util.concurrent.TimeUnit
 
 
@@ -11,10 +12,13 @@ import java.util.concurrent.TimeUnit
 fun Context.scheduleNotification(isLockScreen: Boolean) {
     val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
     val timeInMillis = System.currentTimeMillis() + TimeUnit.SECONDS.toMillis(SCHEDULE_TIME)
+    //////////////////////////////////////////////^FALAR EM MILISEEGUNDOS PARA O TEMPO DE ATIVAÇÃO DA NOTIFICAÇÃO
+
 
     with(alarmManager) {
         setExact(AlarmManager.RTC_WAKEUP, timeInMillis, getReceiver(isLockScreen))
     }
+
 }
 
 private fun Context.getReceiver(isLockScreen: Boolean): PendingIntent {
@@ -27,4 +31,5 @@ private fun Context.getReceiver(isLockScreen: Boolean): PendingIntent {
     )
 }
 
-private const val SCHEDULE_TIME = 5L
+public val SCHEDULE_TIME =10L
+
