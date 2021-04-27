@@ -44,10 +44,6 @@ public class MainActivity extends AppCompatActivity {
                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                     Fragment selectedFragment = null;
                     switch (item.getItemId()){
-                        case R.id.miHome:
-                            selectedFragment = new HomeFragment(sqlite);
-                            break;
-
                         case R.id.miAdd:
                             selectedFragment = new AddFragment();
                             break;

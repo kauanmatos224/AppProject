@@ -15,9 +15,7 @@ public class ItemList {
         this.txtStatus = txtStatus;
     }
 
-    public Bitmap getImgImagem() {
-        return imgImagem;
-    }
+    public Bitmap getImgImagem() { return imgImagem;}
 
     public void setImgImagem(Bitmap imgImagem) { this.imgImagem = imgImagem; }
 

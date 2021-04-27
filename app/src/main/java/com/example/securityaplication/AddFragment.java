@@ -1,5 +1,6 @@
 package com.example.securityaplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -26,6 +27,9 @@ public class AddFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
+        Intent intent = new Intent(getActivity(),ac_cadastro.class);
+        startActivity(intent);
         return inflater.inflate(R.layout.fragment_add, container, false);
     }
 }

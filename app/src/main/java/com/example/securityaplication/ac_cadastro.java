@@ -292,5 +292,10 @@ public class ac_cadastro extends AppCompatActivity {
 
     }
 
+    public void btnHome(View view){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
 
 }
