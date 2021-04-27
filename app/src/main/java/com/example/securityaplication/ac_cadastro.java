@@ -46,7 +46,6 @@ public class ac_cadastro extends AppCompatActivity {
     //variáveis e constantes para o uso de upload de imagem
     //***CONTEM UMA PERMISSÃO NO MANIFEST.XML PARA ESSE CÓDIGO FUNCIONAR (UPLOAD DE IMAGEM).
     public static final int IMAGEM_INTERNA = 12;
-    public Byte imgByte; //variável com a imagem convertida em Byte para armazenar.
     public final int PERMISSAO_REQUEST = 2; //constante para requerir permissão do usuário para acessar galeria.
     public boolean imgSelecionada = false; //verifica se há imagem selecionada.
 
@@ -55,7 +54,8 @@ public class ac_cadastro extends AppCompatActivity {
     public boolean temCategoria = false;
     public boolean temDescri = false;
 
-    byte[] byteArray; //imagem em bytes (Blob)
+    //byte[] byteArray; //imagem em bytes (Blob)
+    public String imgPath;
     Bitmap thumbnail;
 
     //variáveis que vão tratar a entrada.
@@ -113,6 +113,9 @@ public class ac_cadastro extends AppCompatActivity {
             int columnIndex = c.getColumnIndex(filePath[0]);
             String picturePath = c.getString(columnIndex);
             c.close();
+            imgPath = picturePath; //caminho da imagem.
+
+            //abaixo, decodifica a imagem para mostrar o ImageView.
             thumbnail = (BitmapFactory.decodeFile(picturePath));
             ImageView iv = (ImageView) findViewById(R.id.imageView);
             iv.setImageBitmap(thumbnail);
@@ -202,11 +205,11 @@ public class ac_cadastro extends AppCompatActivity {
                 else {
                     if (txtDescri == "") {
                         temDescri = false;
-                        comprimirImagem();
+                        inserirDados();
 
                     } else if (txtDescri != "") {
                         temDescri = true;
-                        comprimirImagem();
+                        inserirDados();
                     }
                 }
 
@@ -216,39 +219,14 @@ public class ac_cadastro extends AppCompatActivity {
 
 
     }
-
-    //abaixo, comprimi a imagem de entrada adquirida no método onActivityResult, de Bitmap para Array em Bytes ( Byte[] ).
-    public void comprimirImagem() {
-
-        if(imgSelecionada) {
-
-            ByteArrayOutputStream stream = new ByteArrayOutputStream();
-            thumbnail.compress(Bitmap.CompressFormat.PNG, 80, stream);
-            byteArray = stream.toByteArray();
-            thumbnail.recycle();
-            inserirDados();
-        }
-        else{
-            Bitmap bitmap = BitmapFactory.decodeResource(this.getResources(), R.drawable.sem_foto);
-            ByteArrayOutputStream stream = new ByteArrayOutputStream();
-            bitmap.compress(Bitmap.CompressFormat.PNG, 80, stream);
-            byteArray = stream.toByteArray();
-            bitmap.recycle();
-            inserirDados();
-        }
-
-    }
-
-
     //monta uma consulta SQL com StringBuilder e append, inserindo os dados de entrada na consulta, e executa-a gravando na
     //tabela tb_mats da database.
     private void inserirDados(){
 
         StringBuilder sql = new StringBuilder();
-        sql.append("INSERT INTO tb_mats(nome_item, img_item, categoria, descri_item, status, descri_emp) VALUES (");
+        sql.append("INSERT INTO tb_mats(nome_item, img_path, categoria, descri_item, status, descri_emp) VALUES (");
         sql.append("'" + txtNome + "',");
-        sql.append("'").append(byteArray).append("',");
-
+        sql.append("'").append(imgPath).append("',");
         sql.append("'" + txtCateg + "',");
 
         if (temDescri = false) {
@@ -279,6 +257,7 @@ public class ac_cadastro extends AppCompatActivity {
         inputDescri.setText("");
         inputNome.setText("");
         ImageView iv = (ImageView)findViewById(R.id.imageView);
+
         Drawable drawable= getResources().getDrawable(R.drawable.img_add);
         iv.setImageDrawable(drawable); //seta a imagem de seleção de foto do item (imagem padrão)
 

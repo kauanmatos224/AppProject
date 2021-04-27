@@ -1,19 +1,21 @@
 package com.example.securityaplication;
 
+import android.annotation.SuppressLint;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-
 import java.util.ArrayList;
 
 /**
@@ -47,13 +49,21 @@ public class HomeFragment extends Fragment {
             ArrayList<ItemList> ItemList = new ArrayList<>();
             do{
 
-               Drawable drawable = this.getResources().getDrawable(R.drawable.caneta_teste);
+               /*Drawable drawable = this.getResources().getDrawable(R.drawable.caneta_teste);
                Bitmap bitmaptest = ((BitmapDrawable)drawable).getBitmap();
+                */
+                Bitmap bmpImg;
+                String pathImg = cursor.getString(2);
+                @SuppressLint("UseCompatLoadingForDrawables") Drawable drawable = this.getResources().getDrawable(R.drawable.sem_foto);
 
+                if(pathImg.equals("") || pathImg == null || pathImg.equals("null")){
+                    bmpImg = ((BitmapDrawable)drawable).getBitmap();
+                }else{
+                    bmpImg = (BitmapFactory.decodeFile(pathImg));
+                }
 
-                ItemList test = new ItemList(bitmaptest, cursor.getString(1),
+                ItemList test = new ItemList(bmpImg, cursor.getString(1),
                         cursor.getString(3), cursor.getString(5));
-
 
                 ItemList.add(test);
 
@@ -62,77 +72,6 @@ public class HomeFragment extends Fragment {
             ItemArrayAdapter itemArrayAdapter = new ItemArrayAdapter(getActivity(), R.layout.adapter_view_layout,ItemList);
             listView.setAdapter(itemArrayAdapter);
         }
-
-
-
-
-
-       /* String[] menuItems = {"text 1",
-                "text 2",
-                "text 3",
-                "text 1",
-                "text 2",
-                "text 3",
-                "text 1",
-                "text 2",
-                "text 3",
-                "text 1",
-                "text 2",
-                "text 3",
-                "text 1",
-                "text 2",
-                "text 3",
-                "text 1",
-                "text 2",
-                "text 3",
-                "text 1",
-                "text 2",
-                "text 3",
-                "text 1",
-                "text 2",
-                "text 3",
-        };*/
-
-  /*      //Transformando a img da caneta em bitmap
-        Drawable drawable = this.getResources().getDrawable(R.drawable.caneta_teste);
-        Bitmap bitmaptest = ((BitmapDrawable)drawable).getBitmap();
-
-
-        //Criando objetos de teste
-        ItemList test = new ItemList(bitmaptest, "Caneta Bic",
-                "Caneta", "Comigo");
-        ItemList test2 = new ItemList(bitmaptest, "Caneta Bic",
-                "Caneta", "Perdido");
-        ItemList test3 = new ItemList(bitmaptest, "Caneta Bic",
-                "Caneta", "Emprestado");
-
-        //Adicionando esses objetos para a array do listView
-        ArrayList<ItemList> ItemList = new ArrayList<>();
-        ItemList.add(test);
-        ItemList.add(test2);
-        ItemList.add(test3);
-        ItemList.add(test);//Varios testes para ver se da pra fazer scroll no home
-        ItemList.add(test2);
-        ItemList.add(test3);
-        ItemList.add(test);
-        ItemList.add(test2);
-        ItemList.add(test3);
-        ItemList.add(test);
-        ItemList.add(test2);
-        ItemList.add(test3);
-*/
-
-
-
-        /*//CRIA ADAPTER PARA ENVIAR OS ITENS DO ARRAY DE LISTA "MENUITENS" PARA O OBJETO LISTVIEW
-        ArrayAdapter<String> listViewAdapter = new ArrayAdapter<String>(
-                getActivity(),android.R.layout.simple_list_item_1,
-                menuItems
-        );
-
-        listView.setAdapter(listViewAdapter);
-*/
-        // Inflate the layout for this fragment
         return view;
     }
 }

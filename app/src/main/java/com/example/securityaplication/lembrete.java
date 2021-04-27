@@ -90,7 +90,11 @@ public class lembrete extends AppCompatActivity {
                 nome = txtNlbt.getText().toString();
 
 
-                TmpNotification();
+
+
+
+
+                //TmpNotification();
                 /*
                 notificaçao();
                 transiçao();

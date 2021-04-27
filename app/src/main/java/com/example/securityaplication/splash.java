@@ -47,7 +47,7 @@ public class splash extends AppCompatActivity {
                 sql.append("CREATE TABLE IF NOT EXISTS tb_mats(");
                 sql.append("_id INTEGER PRIMARY KEY AUTOINCREMENT,");
                 sql.append("nome_item varchar(100),");
-                sql.append("img_item BLOB,");
+                sql.append("img_path String,");
                 sql.append("categoria varchar(100),");
                 sql.append("descri_item varchar(100),");
                 sql.append("status varchar(20),");
