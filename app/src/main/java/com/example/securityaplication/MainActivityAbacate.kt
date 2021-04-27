@@ -25,9 +25,12 @@
 package com.example.securityaplication
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.securityaplication.R
+import java.util.concurrent.TimeUnit
 
 class MainActivityAbacate : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,6 +48,12 @@ class MainActivityAbacate : AppCompatActivity() {
         findViewById<Button>(R.id.showFullScreenIntentLockScreenWithDelayButton).setOnClickListener {
             scheduleNotification(true)
         }
+        var sd: Long = TimeUnit.SECONDS.toMillis(SCHEDULE_TIME)
+        val duration = Toast.LENGTH_SHORT
+        var  text: String = sd.toString()
+
+        val toast = Toast.makeText(applicationContext, text, duration)
+        toast.show()
     }
 }
 

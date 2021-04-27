@@ -4,8 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+
+import java.util.concurrent.TimeUnit;
 
 public class ac_transitions extends AppCompatActivity {
 
@@ -60,6 +63,7 @@ public class ac_transitions extends AppCompatActivity {
     private void Lembrete(){
         Intent intent = new Intent(this, MainActivityAbacate.class);
         startActivity(intent);
+
     }
 
 
