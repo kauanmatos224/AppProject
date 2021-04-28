@@ -31,13 +31,16 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
+import com.example.securityaplication.Lembrete2.DescEmp
 
+@RequiresApi(Build.VERSION_CODES.O)
 fun Context.showNotificationWithFullScreenIntent(
     isLockScreen: Boolean = false,
     channelId: String = CHANNEL_ID,
-    title: String = "Title",
-    description: String = "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+    title: String = "EMPRESTIMO",
+    description: String = ss
 
 ) {
     val builder = NotificationCompat.Builder(this, channelId)
@@ -55,14 +58,14 @@ fun Context.showNotificationWithFullScreenIntent(
 
         val notification = builder.build()
 
-        notify(0, notification)
+        notify(1, notification)
     }
 }
 
 private fun NotificationManager.buildChannel() {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
         val name = "Example Notification Channel"
-        val descriptionText = "This is used to demonstrate the Full Screen Intent"
+        val descriptionText = ss
         val importance = NotificationManager.IMPORTANCE_HIGH
         val channel = NotificationChannel(CHANNEL_ID, name, importance).apply {
             description = descriptionText
@@ -84,3 +87,7 @@ private fun Context.getFullScreenIntent(isLockScreen: Boolean): PendingIntent {
 }
 
 private const val CHANNEL_ID = "channelId"
+@RequiresApi(Build.VERSION_CODES.O)
+var ss : String = DescEmp
+
+

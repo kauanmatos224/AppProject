@@ -37,23 +37,11 @@ class MainActivityAbacate : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.abacate)
 
-        findViewById<Button>(R.id.showFullScreenIntentButton).setOnClickListener {
-            showNotificationWithFullScreenIntent()
-        }
-
-        findViewById<Button>(R.id.showFullScreenIntentWithDelayButton).setOnClickListener {
-            scheduleNotification(false)
-        }
 
         findViewById<Button>(R.id.showFullScreenIntentLockScreenWithDelayButton).setOnClickListener {
             scheduleNotification(true)
         }
-        var sd: Long = TimeUnit.SECONDS.toMillis(SCHEDULE_TIME)
-        val duration = Toast.LENGTH_SHORT
-        var  text: String = sd.toString()
 
-        val toast = Toast.makeText(applicationContext, text, duration)
-        toast.show()
     }
 }
 
