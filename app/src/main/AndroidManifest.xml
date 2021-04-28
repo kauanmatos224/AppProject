@@ -10,7 +10,6 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -18,7 +17,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SecurityAplication">
-        <activity android:name=".CallActivity"></activity>
+        <activity android:name=".Lembrete2"></activity>
+        <activity android:name=".CallActivity" />
         <activity android:name=".lembrete" />
         <activity android:name=".materiais_ac">
             <intent-filter>
@@ -59,9 +59,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
-
         <activity android:name=".MainActivityAbacate">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -69,11 +66,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".FullScreenActivity" />
-
-        <activity android:name=".LockScreenActivity"
-            android:showOnLockScreen="true"/>
+        <activity
+            android:name=".LockScreenActivity"
+            android:showOnLockScreen="true" />
 
         <receiver
             android:name=".NotificationReceiver"
