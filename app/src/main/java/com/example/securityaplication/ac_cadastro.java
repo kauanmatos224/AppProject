@@ -1,5 +1,6 @@
 package com.example.securityaplication;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -17,7 +18,9 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
@@ -34,8 +37,12 @@ import android.database.sqlite.SQLiteDatabase;
 
 //imports para tranformar bitmap em byte.
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.channels.FileChannel;
 import java.util.Arrays;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -45,9 +52,10 @@ public class ac_cadastro extends AppCompatActivity {
 
     //variáveis e constantes para o uso de upload de imagem
     //***CONTEM UMA PERMISSÃO NO MANIFEST.XML PARA ESSE CÓDIGO FUNCIONAR (UPLOAD DE IMAGEM).
-    public static final int IMAGEM_INTERNA = 12;
-    public final int PERMISSAO_REQUEST = 2; //constante para requerir permissão do usuário para acessar galeria.
+
+    public final int PERMISSAO_REQUEST = 1; //constante para requerir permissão do usuário para acessar galeria.
     public boolean imgSelecionada = false; //verifica se há imagem selecionada.
+    public static final int CODE_PERMISSION = 12;
 
     //verifica as outras entradas.
     public boolean temNome = false;
@@ -205,11 +213,11 @@ public class ac_cadastro extends AppCompatActivity {
                 else {
                     if (txtDescri == "") {
                         temDescri = false;
-                        inserirDados();
+                        checkPermission();
 
                     } else if (txtDescri != "") {
                         temDescri = true;
-                        inserirDados();
+                        checkPermission();
                     }
                 }
 
@@ -219,14 +227,62 @@ public class ac_cadastro extends AppCompatActivity {
 
 
     }
+
+
+    private void checkPermission() {
+        // Verifica necessidade de verificacao de permissao
+        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            // Verifica necessidade de explicar necessidade da permissao
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                Toast.makeText(this,"É necessário a  de leitura e escrita!", Toast.LENGTH_SHORT).show();
+                ActivityCompat.requestPermissions(this,
+                        new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE, android.Manifest.permission.READ_EXTERNAL_STORAGE },
+                        CODE_PERMISSION);
+            } else {
+                // Solicita permissao
+                ActivityCompat.requestPermissions(this,
+                        new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE,  android.Manifest.permission.READ_EXTERNAL_STORAGE},
+                        CODE_PERMISSION);
+            }
+        }
+        inserirDados();
+    }
+
     //monta uma consulta SQL com StringBuilder e append, inserindo os dados de entrada na consulta, e executa-a gravando na
     //tabela tb_mats da database.
     private void inserirDados(){
 
+        final File selecionada = new File(imgPath);
+        File rootPath  = new File(android.os.Environment.getExternalStorageDirectory()+"/security_material/imagens/");
+
+        try {
+            if (!rootPath.exists()) {
+                rootPath.mkdirs();
+            }
+            if(!rootPath.exists()){
+                rootPath = new File(imgPath);
+            }
+
+        }catch (Exception erro){
+            Toast.makeText(getBaseContext(),"Erro ao criar pasta: "+erro, Toast.LENGTH_LONG).show();
+        }
+        final File novaImagem = new File(rootPath, selecionada.getName());
+
+        //Movemos o arquivo!
+        try {
+            moveFile(selecionada, novaImagem);
+            Toast.makeText(getApplicationContext(), "Imagem movida com sucesso!", Toast.LENGTH_SHORT).show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+
+
+
         StringBuilder sql = new StringBuilder();
         sql.append("INSERT INTO tb_mats(nome_item, img_path, categoria, descri_item, status, descri_emp) VALUES (");
         sql.append("'" + txtNome + "',");
-        sql.append("'").append(imgPath).append("',");
+        sql.append("'").append(novaImagem.getPath()).append("',");
         sql.append("'" + txtCateg + "',");
 
         if (temDescri = false) {
@@ -250,6 +306,27 @@ public class ac_cadastro extends AppCompatActivity {
                     "Sentimos muito mesmo!!! Tente novamente mais tarde :(", Toast.LENGTH_LONG).show();
         }
     }
+
+    private void moveFile(File sourceFile, File destFile) throws IOException {
+        FileChannel source = null;
+        FileChannel destination = null;
+        source = new FileInputStream(sourceFile).getChannel();
+        destination = new FileOutputStream(destFile).getChannel();
+        if (destination != null && source != null) {
+            destination.transferFrom(source, 0, source.size());
+        }
+        if (source != null) {
+            source.close();
+        }
+        if (destination != null) {
+            destination.close();
+        }
+        //Alertamos, caso não consiga remover
+        if(!sourceFile.delete()){
+            Toast.makeText(getApplicationContext(), "Não foi possível remover a imagem!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
 
     //limpa as entradas de dados.
     public void limpaEntradas(){
