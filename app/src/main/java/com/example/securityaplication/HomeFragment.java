@@ -56,7 +56,7 @@ public class HomeFragment extends Fragment {
                 String pathImg = cursor.getString(2);
                 @SuppressLint("UseCompatLoadingForDrawables") Drawable drawable = this.getResources().getDrawable(R.drawable.sem_foto);
 
-                if(pathImg.equals("") || pathImg == null || pathImg.equals("null")){
+                if(pathImg.equals("") || pathImg.equals("null")){
                     bmpImg = ((BitmapDrawable)drawable).getBitmap();
                 }else{
                     bmpImg = (BitmapFactory.decodeFile(pathImg));

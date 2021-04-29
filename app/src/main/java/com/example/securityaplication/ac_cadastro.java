@@ -61,6 +61,7 @@ public class ac_cadastro extends AppCompatActivity {
     public boolean temNome = false;
     public boolean temCategoria = false;
     public boolean temDescri = false;
+    public boolean notDirCreat = false;
 
     //byte[] byteArray; //imagem em bytes (Blob)
     public String imgPath;
@@ -252,37 +253,47 @@ public class ac_cadastro extends AppCompatActivity {
     //tabela tb_mats da database.
     private void inserirDados(){
 
-        final File selecionada = new File(imgPath);
-        File rootPath  = new File(android.os.Environment.getExternalStorageDirectory()+"/security_material/imagens/");
-
-        try {
-            if (!rootPath.exists()) {
-                rootPath.mkdirs();
-            }
-            if(!rootPath.exists()){
-                rootPath = new File(imgPath);
-            }
-
-        }catch (Exception erro){
-            Toast.makeText(getBaseContext(),"Erro ao criar pasta: "+erro, Toast.LENGTH_LONG).show();
-        }
-        final File novaImagem = new File(rootPath, selecionada.getName());
-
-        //Movemos o arquivo!
-        try {
-            moveFile(selecionada, novaImagem);
-            Toast.makeText(getApplicationContext(), "Imagem movida com sucesso!", Toast.LENGTH_SHORT).show();
-        } catch (IOException e) {
-            e.printStackTrace();
-            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
-        }
-
-
-
         StringBuilder sql = new StringBuilder();
         sql.append("INSERT INTO tb_mats(nome_item, img_path, categoria, descri_item, status, descri_emp) VALUES (");
         sql.append("'" + txtNome + "',");
-        sql.append("'").append(novaImagem.getPath()).append("',");
+
+        if(imgSelecionada) {
+            File selecionada = new File(imgPath);
+            File rootPath = new File(android.os.Environment.getExternalStorageDirectory() + "/security_material/imagens/");
+
+            try {
+                if (!rootPath.exists()) {
+                    rootPath.mkdirs();
+                }
+                if (!rootPath.exists()) {
+                    rootPath = new File(imgPath);
+                    notDirCreat = true;
+                }
+
+            } catch (Exception erro) {
+                Toast.makeText(getBaseContext(), "Erro ao criar pasta: " + erro, Toast.LENGTH_LONG).show();
+            }
+            final File novaImagem = new File(rootPath, selecionada.getName());
+
+            //Movemos o arquivo!
+            try {
+                moveFile(selecionada, novaImagem);
+                Toast.makeText(getApplicationContext(), "Imagem movida com sucesso!", Toast.LENGTH_SHORT).show();
+            } catch (IOException e) {
+                e.printStackTrace();
+                Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+            if(notDirCreat=false) {
+                sql.append("'").append(novaImagem.getPath()).append("',");
+            }
+            else{
+                sql.append("'"+imgPath+"',");
+            }
+        }
+        else{
+            sql.append("'',");
+        }
+
         sql.append("'" + txtCateg + "',");
 
         if (temDescri = false) {
@@ -302,8 +313,7 @@ public class ac_cadastro extends AppCompatActivity {
                     Toast.LENGTH_SHORT).show();
 
         } catch (SQLException ex) {
-            Toast.makeText(getBaseContext(), sql.toString() + "Erro =  " + ex.getMessage()+"\n"+
-                    "Sentimos muito mesmo!!! Tente novamente mais tarde :(", Toast.LENGTH_LONG).show();
+            Toast.makeText(getBaseContext(),"Sentimos muito mesmo!!! Tente novamente mais tarde :(", Toast.LENGTH_LONG).show();
         }
     }
 
