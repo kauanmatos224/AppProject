@@ -31,8 +31,8 @@
     tools:context=".FullScreenActivity">
 
     <TextView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="388dp"
+        android:layout_height="32dp"
         android:text="@string/full_screen_activity"
         android:textAlignment="center"
         android:textSize="18sp"

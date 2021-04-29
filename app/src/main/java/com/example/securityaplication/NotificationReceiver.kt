@@ -28,9 +28,13 @@ package com.example.securityaplication;
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.os.Build
+import androidx.annotation.RequiresApi
+
 
 class NotificationReceiver : BroadcastReceiver() {
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onReceive(context: Context, intent: Intent) {
         if(intent.getBooleanExtra(LOCK_SCREEN_KEY, true)) {
             context.showNotificationWithFullScreenIntent(true)
@@ -49,3 +53,6 @@ class NotificationReceiver : BroadcastReceiver() {
 }
 
 private const val LOCK_SCREEN_KEY = "lockScreenKey"
+
+
+

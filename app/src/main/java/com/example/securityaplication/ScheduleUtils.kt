@@ -4,14 +4,17 @@ package com.example.securityaplication;
 import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
+import android.os.Build
 import android.util.Log
+import androidx.annotation.RequiresApi
 import java.util.concurrent.TimeUnit
 
 
 
+@RequiresApi(Build.VERSION_CODES.O)
 fun Context.scheduleNotification(isLockScreen: Boolean) {
     val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
-    val timeInMillis = System.currentTimeMillis() + Lembrete2.difMilis
+    val timeInMillis = System.currentTimeMillis() + LdifiMilis
     //////////////////////////////////////////////^FALAR EM MILISEEGUNDOS PARA O TEMPO DE ATIVAÇÃO DA NOTIFICAÇÃO
 
 
@@ -30,6 +33,8 @@ private fun Context.getReceiver(isLockScreen: Boolean): PendingIntent {
         0
     )
 }
+@RequiresApi(Build.VERSION_CODES.O)
+var LdifiMilis: Long = Lembrete2.difMilis
 
 
 
