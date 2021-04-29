@@ -1,31 +1,45 @@
 package com.example.securityaplication;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.time.Instant;
 import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
 import java.util.Date;
 
 import static java.time.LocalDateTime.of;
 
+@RequiresApi(api = Build.VERSION_CODES.O)
 public class Lembrete2 extends AppCompatActivity {
 
 
 
 
     EditText descEmp;
-    EditText data;
-    EditText hora;
     Button btnLemb;
+
+    public static long difMilis;
+
+///------CAPTURA INFORMAÇÕES SORE A DATA DE EMISSAÃO DO LEMBRETE--------
+
+    EditText txtAno;
+    EditText txtMes;
+    EditText txtDia;
+
+
+    EditText txtHora;
+    EditText txtMin;
+
+///------CAPTURA INFORMAÇÕES SORE A DATA DE EMISSAÃO DO LEMBRETE--------
 
     //VARIVEIS DO TEMPO FINAL
     int ano=10;
@@ -43,6 +57,17 @@ public class Lembrete2 extends AppCompatActivity {
     int Shoraa;
     int Smin;
 
+    // TESXTO DESCRIÇÃO DO EMPRESTIMO
+    public static String DescEmp;
+
+
+    // VARIAVEIS TESTE
+    String DATA = "";
+    String HORA = "";
+
+    //
+
+
 
 
 
@@ -51,6 +76,83 @@ public class Lembrete2 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lembrete2);
+
+
+        //-------------REFERENCIAMENTO---------------------------------------------
+        btnLemb = findViewById(R.id.btnLemb);
+
+
+
+        txtAno = findViewById(R.id.txtAno);
+        txtMes = findViewById(R.id.txtMEs);
+        txtMin = findViewById(R.id.TxtMin);
+        txtHora = findViewById(R.id.txtHora);
+        txtDia = findViewById(R.id.txtDia);
+
+
+        descEmp = findViewById(R.id.txtDesc);
+        //-------------REFERENCIAMENTO---------------------------------------------
+
+
+        btnLemb.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                 DescEmp = descEmp.getText().toString();
+
+
+
+
+
+
+                //--CAPTURA AS INFORMAÇÕEOS SOBRE A DATA E HORA FINAL, E CONVERTE EM INT---------
+                String anoC = txtAno.getText().toString();
+                ano = Integer.parseInt(anoC.format(anoC));
+
+                String mesC = txtMes.getText().toString();
+                mes = Integer.parseInt(mesC.format(mesC));
+
+
+                 String diaC = txtDia.getText().toString();
+                dia = Integer.parseInt(diaC.format(diaC));
+
+
+                String horaC = txtHora.getText().toString();
+                horaa = Integer.parseInt(horaC.format(horaC));
+
+
+                String minC = txtMin.getText().toString();
+                min = Integer.parseInt(minC.format(minC));
+
+                System.out.println(ano+" "+mes+" "+dia+" "+horaa+" "+min);
+                //--CAPTURA AS INFORMAÇÕEOS SOBRE A DATA E HORA FINAL, E CONVERTE EM INT---------
+
+                CalcData();
+                maca();
+
+
+
+
+
+
+
+
+            }
+
+
+
+        });
+
+
+
+
+
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.O) //  <-- INICIALIZA O OBJETO LOCALDATATIME
+    private void CalcData(){
+
 
         //RECUPERA A DATA DO SISTEMA E QUEBRA EM PEDAÇOS ATRINUINDO CADA PARTE A UMA VARIAVEL INT
         Date dateAno = new Date();
@@ -90,20 +192,24 @@ public class Lembrete2 extends AppCompatActivity {
         String p7 = formatar5.format(dateAno);
         Sseg = Integer.parseInt(p7.format(p7));
 
-        //System.out.println(Shoraa);
+        System.out.println(Sano+" "+Smes+" "+Sdia+" "+Shoraa+" "+Smin+" "+Sseg);
 
         //-------------------------CALCULO DA DIFERENÇA DAS DATAS----------------------------------------
         LocalDateTime startDate = LocalDateTime.of(Sano, Smes, Sdia, Shoraa, Smin, Sseg, 0);
-        LocalDateTime endDate = LocalDateTime.of(ano, mes, dia, horaa, min, seg, 0);
+        LocalDateTime endDate = LocalDateTime.of(ano, mes, dia, horaa, min, Sseg, 0);
 
         Duration milis = Duration.between(startDate, endDate);
-        long s = (milis.toMillis());
+        difMilis = (milis.toMillis());
         //-------------------------CALCULO DA DIFERENÇA DAS DATAS----------------------------------------
         /* A VARIAVEL LONG S DEMONSTRADA ACIMA TEM O VALOR EM MILESSEGUNONOS DO TEMPO
         PASSADO ENTRE A DATA ATUAL E A DATA TRANMITIDA ATRAVÉS DE UMA VARIAVEL, A QUAL
          O USUARIO PODERIA DIGITAR NA TELA.
          */
 
-        //System.out.println(s);
+        System.out.println(difMilis);
+    }
+    private void maca(){
+        Intent intent = new Intent(this, MainActivityAbacate.class);
+        startActivity(intent);
     }
 }
