@@ -97,7 +97,7 @@ public class ac_cadastro extends AppCompatActivity {
             }else{
 
                 ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}
-                ,PERMISSAO_REQUEST);
+                        ,PERMISSAO_REQUEST);
             }
         }
     }
