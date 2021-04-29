@@ -89,8 +89,6 @@ public class Lembrete2 extends AppCompatActivity {
         txtHora = findViewById(R.id.txtHora);
         txtDia = findViewById(R.id.txtDia);
 
-
-        descEmp = findViewById(R.id.txtDesc);
         //-------------REFERENCIAMENTO---------------------------------------------
 
 
@@ -99,7 +97,6 @@ public class Lembrete2 extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                 DescEmp = descEmp.getText().toString();
 
 
 
