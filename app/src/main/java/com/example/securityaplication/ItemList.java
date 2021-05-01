@@ -3,10 +3,10 @@ package com.example.securityaplication;
 import android.graphics.Bitmap;
 
 public class ItemList {
-    Bitmap imgImagem;
-    String txtNomeItem;
-    String txtCategoria;
-    String txtStatus;
+    private Bitmap imgImagem;
+    private String txtNomeItem;
+    private String txtCategoria;
+    private String txtStatus;
 
     public ItemList(Bitmap imgImagem, String txtNomeItem, String txtCategoria, String txtStatus) {
         this.imgImagem = imgImagem;
@@ -15,20 +15,18 @@ public class ItemList {
         this.txtStatus = txtStatus;
     }
 
-    public Bitmap getImgImagem() { return imgImagem;}
+    public Bitmap getImgImagem() { return this.imgImagem;}
 
     public void setImgImagem(Bitmap imgImagem) { this.imgImagem = imgImagem; }
 
     public String getTxtNomeItem() {
-        return txtNomeItem;
+        return this.txtNomeItem;
     }
 
-    public void setTxtNomeItem(String txtNomeItem) {
-        this.txtNomeItem = txtNomeItem;
-    }
+    public void setTxtNomeItem(String txtNomeItem) { this.txtNomeItem = txtNomeItem; }
 
     public String getTxtCategoria() {
-        return txtCategoria;
+        return this.txtCategoria;
     }
 
     public void setTxtCategoria(String txtCategoria) {
@@ -36,7 +34,7 @@ public class ItemList {
     }
 
     public String getTxtStatus() {
-        return txtStatus;
+        return this.txtStatus;
     }
 
     public void setTxtStatus(String txtStatus) { this.txtStatus = txtStatus; }

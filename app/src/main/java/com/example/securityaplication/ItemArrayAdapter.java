@@ -1,6 +1,8 @@
 package com.example.securityaplication;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,43 +14,36 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ItemArrayAdapter extends ArrayAdapter<ItemList> {
 
-    // private static final String TAG= "ItemArrayAdapter";
-    private Context mContext;
-    private int mResource;
 
-    public ItemArrayAdapter(@NonNull Context context, int resource, @NonNull ArrayList<ItemList> objects) {
-        super(context, resource, objects);
-        this.mContext = context;
-        this.mResource = resource;
+    private List<ItemList> items;
+
+    public ItemArrayAdapter(Context context, int textViewResourceId, List<ItemList> items){
+        super(context, textViewResourceId, items);
+        this.items = items;
     }
 
-    @NonNull
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        LayoutInflater layoutInflater = LayoutInflater.from(mContext);
+    public View getView(int position, View convertView, ViewGroup parent) {
+        View v = convertView;
+        if (v == null) {
+            Context ctx = getContext();
+            LayoutInflater vi = (LayoutInflater)ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            v = vi.inflate(R.layout.adapter_view_layout, null);
+        }
+        ItemList lista = items.get(position);
+        if (lista != null) {
 
-        convertView = layoutInflater.inflate(mResource,parent,false);
+            ((ImageView) v.findViewById(R.id.imgImagem)).setImageBitmap(lista.getImgImagem());
+            ((TextView) v.findViewById(R.id.txtNomeItem)).setText(lista.getTxtNomeItem());
+            ((TextView) v.findViewById(R.id.txtCategoria)).setText(lista.getTxtCategoria());
+            ((TextView) v.findViewById(R.id.txtStatus)).setText(lista.getTxtStatus());
 
-        ImageView imageView = convertView.findViewById(R.id.imgImagem);
-
-        TextView txtNomeItem = convertView.findViewById(R.id.txtNomeItem);
-
-        TextView txtCategoria = convertView.findViewById(R.id.txtCategoria);
-
-        TextView txtStatus = convertView.findViewById(R.id.txtStatus);
-
-        imageView.setImageBitmap(getItem(position).getImgImagem());
-
-        txtNomeItem.setText(getItem(position).getTxtNomeItem());
-
-        txtCategoria.setText(getItem(position).getTxtCategoria());
-
-        txtStatus.setText(getItem(position).getTxtStatus());
-
-        return convertView;
+        }
+        return v;
     }
 }
 
