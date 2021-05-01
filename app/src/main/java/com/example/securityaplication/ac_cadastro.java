@@ -276,18 +276,21 @@ public class ac_cadastro extends AppCompatActivity {
             final File novaImagem = new File(rootPath, selecionada.getName());
 
             //Movemos o arquivo!
-            try {
-                moveFile(selecionada, novaImagem);
-                Toast.makeText(getApplicationContext(), "Imagem movida com sucesso!", Toast.LENGTH_SHORT).show();
-            } catch (IOException e) {
-                e.printStackTrace();
-                Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-            if(notDirCreat=false) {
-                sql.append("'").append(novaImagem.getPath()).append("',");
-            }
-            else{
-                sql.append("'"+imgPath+"',");
+            if(!notDirCreat) {
+                try {
+                    moveFile(selecionada, novaImagem);
+                    Toast.makeText(getApplicationContext(), "Imagem movida com sucesso!", Toast.LENGTH_SHORT).show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+                if (notDirCreat = false) {
+                    sql.append("'").append(novaImagem.getPath()).append("',");
+                } else {
+                    sql.append("'" + imgPath + "',");
+                }
+            }else{
+                sql.append("'" + imgPath + "',");
             }
         }
         else{

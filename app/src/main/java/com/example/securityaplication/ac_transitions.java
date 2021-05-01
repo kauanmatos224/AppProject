@@ -65,6 +65,10 @@ public class ac_transitions extends AppCompatActivity {
         startActivity(intent);
 
     }
+    public void chamaPdf(View view){
+        Intent intent = new Intent(this, shareLost.class);
+        startActivity(intent);
+    }
 
 
 }

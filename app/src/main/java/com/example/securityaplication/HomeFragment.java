@@ -59,7 +59,11 @@ public class HomeFragment extends Fragment {
                 if(pathImg.equals("") || pathImg.equals("null")){
                     bmpImg = ((BitmapDrawable)drawable).getBitmap();
                 }else{
-                    bmpImg = (BitmapFactory.decodeFile(pathImg));
+                    try {
+                        bmpImg = (BitmapFactory.decodeFile(pathImg));
+                    }catch (Exception ex){
+                        bmpImg = ((BitmapDrawable)drawable).getBitmap();
+                    }
                 }
 
                 ItemList test = new ItemList(bmpImg, cursor.getString(1),
