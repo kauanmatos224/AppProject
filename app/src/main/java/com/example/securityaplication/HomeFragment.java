@@ -69,6 +69,9 @@ public class HomeFragment extends Fragment implements PopupMenu.OnMenuItemClickL
                 }else{
                     try {
                         bmpImg = (BitmapFactory.decodeFile(pathImg));
+                        if(bmpImg==null){
+                            bmpImg = ((BitmapDrawable)drawable).getBitmap();
+                        }
                     }catch (Exception ex){
                         bmpImg = ((BitmapDrawable)drawable).getBitmap();
                     }

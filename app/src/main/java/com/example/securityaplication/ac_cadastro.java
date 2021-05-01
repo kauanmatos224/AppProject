@@ -42,6 +42,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.nio.channels.FileChannel;
 import java.util.Arrays;
 
@@ -132,6 +133,10 @@ public class ac_cadastro extends AppCompatActivity {
 
             TextView txtRemove = (TextView)findViewById(R.id.txtRemove);
             txtRemove.setVisibility(View.VISIBLE);
+            if(thumbnail==null){
+                Toast.makeText(getBaseContext(), "Imagem não suportada!", Toast.LENGTH_LONG).show();
+                RemoveImg();
+            }
 
         }
     }
@@ -155,7 +160,9 @@ public class ac_cadastro extends AppCompatActivity {
 
     //método OnClick no TextView vermelho de remoção da imagem.
     public void txtRemoveClick_removeImg(View view){
-
+        RemoveImg();
+    }
+    private void RemoveImg(){
         ImageView iv = (ImageView) findViewById(R.id.imageView);
 
         Drawable drawable= getResources().getDrawable(R.drawable.img_add);
@@ -164,8 +171,6 @@ public class ac_cadastro extends AppCompatActivity {
         TextView txtRemove = (TextView)findViewById(R.id.txtRemove);
         imgSelecionada = false;
         txtRemove.setVisibility(View.GONE);
-
-
     }
     //método com ação onClick do botão de cadastramento.
     public void btnCadastra(View view){
@@ -321,22 +326,21 @@ public class ac_cadastro extends AppCompatActivity {
     }
 
     private void moveFile(File sourceFile, File destFile) throws IOException {
-        FileChannel source = null;
-        FileChannel destination = null;
-        source = new FileInputStream(sourceFile).getChannel();
-        destination = new FileOutputStream(destFile).getChannel();
-        if (destination != null && source != null) {
-            destination.transferFrom(source, 0, source.size());
+
+        if(sourceFile != destFile) {
+            InputStream in = new FileInputStream(sourceFile);
+            OutputStream out = new FileOutputStream(destFile);  // Transferindo bytes de entrada para saída
+            byte[] buf = new byte[1024];
+            int len;
+            while ((len = in.read(buf)) > 0) {
+                out.write(buf, 0, len);
+            }
+            in.close();
+            out.close();
+            imgPath = destFile.getPath();
         }
-        if (source != null) {
-            source.close();
-        }
-        if (destination != null) {
-            destination.close();
-        }
-        //Alertamos, caso não consiga remover
-        if(!sourceFile.delete()){
-            Toast.makeText(getApplicationContext(), "Não foi possível remover a imagem!", Toast.LENGTH_SHORT).show();
+        else {
+            imgPath = destFile.getPath();
         }
     }
 
