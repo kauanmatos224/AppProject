@@ -7,12 +7,14 @@ public class ItemList {
     private String txtNomeItem;
     private String txtCategoria;
     private String txtStatus;
+    private String txtId;
 
-    public ItemList(Bitmap imgImagem, String txtNomeItem, String txtCategoria, String txtStatus) {
+    public ItemList(Bitmap imgImagem, String txtNomeItem, String txtCategoria, String txtStatus, String txtId) {
         this.imgImagem = imgImagem;
         this.txtNomeItem = txtNomeItem;
         this.txtCategoria = txtCategoria;
         this.txtStatus = txtStatus;
+        this.txtId = txtId;
     }
 
     public Bitmap getImgImagem() { return this.imgImagem;}
@@ -38,4 +40,9 @@ public class ItemList {
     }
 
     public void setTxtStatus(String txtStatus) { this.txtStatus = txtStatus; }
+
+    public String getId() { return this.txtId;}
+
+    public void setId(String txtId) { this.txtId = txtId; }
+
 }

@@ -55,6 +55,17 @@
         android:textColor="@android:color/white"
         android:textSize="15dp" />
 
+    <TextView
+        android:id="@+id/txtId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="50dp"
+        android:background="#bf6767"
+        android:fontFamily="@font/roboto_bold"
+        android:text="Identifier"
+        android:layout_toRightOf="@id/txtStatus"
+        android:visibility="invisible" />
 
 
 </RelativeLayout>

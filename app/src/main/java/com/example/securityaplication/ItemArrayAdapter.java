@@ -41,6 +41,7 @@ public class ItemArrayAdapter extends ArrayAdapter<ItemList> {
             ((TextView) v.findViewById(R.id.txtNomeItem)).setText(lista.getTxtNomeItem());
             ((TextView) v.findViewById(R.id.txtCategoria)).setText(lista.getTxtCategoria());
             ((TextView) v.findViewById(R.id.txtStatus)).setText(lista.getTxtStatus());
+            ((TextView) v.findViewById(R.id.txtId)).setText(lista.getId());
 
         }
         return v;

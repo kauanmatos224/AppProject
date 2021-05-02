@@ -86,7 +86,7 @@ public class HomeFragment extends Fragment implements PopupMenu.OnMenuItemClickL
                 }
 
                 test = new ItemList(bmpImg, cursor.getString(1),
-                        cursor.getString(3), cursor.getString(5));
+                        cursor.getString(3), cursor.getString(5), cursor.getString(0));
 
                 ItemList.add(test);
 
@@ -111,12 +111,12 @@ public class HomeFragment extends Fragment implements PopupMenu.OnMenuItemClickL
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
 
-                ItemList item= adapter.getItem(position);
-                dataId = adapterView.getItemIdAtPosition(position);
-                itemPos = position;
+                ItemList item = adapter.getItem(position);//pega valores de uma linha a partir da posição do item na lista array.
+                itemPos = position; //posição dos elementos no listView.
 
-                //Toast.makeText(getContext(), item.getTxtNomeItem().toString(),   Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(),"Item selected: "+ item.getId(),   Toast.LENGTH_SHORT).show();
                 showPopup(adapterView);
+
 
             }
         });
@@ -134,18 +134,17 @@ public class HomeFragment extends Fragment implements PopupMenu.OnMenuItemClickL
 
     @Override
     public boolean onMenuItemClick(MenuItem menuItem) {
-        String sqlCommand = "delete from tb_mats where _id="+dataId+";";
+        String sqlCommand = "delete from tb_mats where(_id="+dataId+");";
         switch(menuItem.getItemId()){
             case R.id.itemAlterar:
                 Toast.makeText(getActivity(), "Item 1 clicked", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(getActivity(), ac_update.class);
-                startActivity(intent);
+                /*((MainActivity)getActivity()).telaUpdate(dataId);
                 intent.putExtra("idRegister", dataId);
-
+                */
 
                 return true;
             case R.id.itemExcluir:
-                Toast.makeText(getActivity(), "Item 2 clicked", Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), "Item 2 clicked:"+dataId, Toast.LENGTH_LONG).show();
                 try {
                     database.execSQL(sqlCommand);
                     adapter.removeItem(itemPos);
