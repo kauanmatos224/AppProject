@@ -69,7 +69,7 @@ public class reportarPerda extends AppCompatActivity {
         bmpImg = BitmapFactory.decodeFile(pathImg);
         String docPath = absoluteFileName.getPath();
 
-        scaledBitmap = Bitmap.createScaledBitmap(bmpImg, 150, 200, true );
+        scaledBitmap = Bitmap.createScaledBitmap(bmpImg, 150, 200, false );
         String titulo = "RELATO DE PERDA DE MATERIAL("+nome_item+")";
         String linha = "Esse material com as seguintes características:" + descri_item;
         String linha2="Foi perdido, se alguém o encontra-lo, entre em contato para a devolução";
@@ -114,7 +114,6 @@ public class reportarPerda extends AppCompatActivity {
             _intent.putExtra(Intent.EXTRA_STREAM, arquivo);
             _intent.putExtra(Intent.EXTRA_TEXT, "Venho informar a perda de um material com o seguinte anexo: ");
             _intent.putExtra(Intent.EXTRA_TITLE, "Meu pdf");
-
             _intent.setType("application/pdf");
 
             startActivity(Intent.createChooser(_intent, "Compartilhar"));

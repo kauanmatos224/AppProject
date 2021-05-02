@@ -1,6 +1,8 @@
 package com.example.securityaplication;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
@@ -32,6 +34,9 @@ public class HomeFragment extends Fragment implements PopupMenu.OnMenuItemClickL
 
     ItemArrayAdapter adapter;
     private ListView listax;
+    public long dataId = 0;
+    ItemList test;
+    int itemPos = 0;
 
     //objeto de banco de dados
     SQLiteDatabase database;
@@ -59,7 +64,7 @@ public class HomeFragment extends Fragment implements PopupMenu.OnMenuItemClickL
 
 
 
-        Cursor cursor = database.rawQuery("select * from tb_mats", null);
+        Cursor cursor = database.rawQuery("select * from tb_mats;", null);
         if(cursor.moveToFirst()){
             ArrayList<ItemList> ItemList = new ArrayList<>();
             do{
@@ -75,9 +80,12 @@ public class HomeFragment extends Fragment implements PopupMenu.OnMenuItemClickL
                     bmpImg = ((BitmapDrawable)drawable).getBitmap();
                 }else{
                     bmpImg = (BitmapFactory.decodeFile(pathImg));
+                    if(bmpImg==null){
+                        bmpImg = ((BitmapDrawable)drawable).getBitmap();
+                    }
                 }
 
-                ItemList test = new ItemList(bmpImg, cursor.getString(1),
+                test = new ItemList(bmpImg, cursor.getString(1),
                         cursor.getString(3), cursor.getString(5));
 
                 ItemList.add(test);
@@ -104,17 +112,15 @@ public class HomeFragment extends Fragment implements PopupMenu.OnMenuItemClickL
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
 
                 ItemList item= adapter.getItem(position);
+                dataId = adapterView.getItemIdAtPosition(position);
+                itemPos = position;
 
                 //Toast.makeText(getContext(), item.getTxtNomeItem().toString(),   Toast.LENGTH_SHORT).show();
                 showPopup(adapterView);
 
             }
         });
-
-
-
         // listView.setItemChecked(position1, true);
-
         return view;
     }
 
@@ -128,12 +134,26 @@ public class HomeFragment extends Fragment implements PopupMenu.OnMenuItemClickL
 
     @Override
     public boolean onMenuItemClick(MenuItem menuItem) {
+        String sqlCommand = "delete from tb_mats where _id="+dataId+";";
         switch(menuItem.getItemId()){
             case R.id.itemAlterar:
                 Toast.makeText(getActivity(), "Item 1 clicked", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(getActivity(), ac_update.class);
+                startActivity(intent);
+                intent.putExtra("idRegister", dataId);
+
+
                 return true;
             case R.id.itemExcluir:
                 Toast.makeText(getActivity(), "Item 2 clicked", Toast.LENGTH_LONG).show();
+                try {
+                    database.execSQL(sqlCommand);
+                    adapter.removeItem(itemPos);
+                    adapter.notifyDataSetChanged();
+                }catch (Exception ex){
+                    Toast.makeText(getActivity(), "Não foi possível excluir o item", Toast.LENGTH_LONG).show();
+                }
+
                 return true;
             case R.id.itemEmprestar:
                 Toast.makeText(getActivity(), "Item 3 clicked", Toast.LENGTH_LONG).show();

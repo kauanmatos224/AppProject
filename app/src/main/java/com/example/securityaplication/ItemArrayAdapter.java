@@ -45,6 +45,10 @@ public class ItemArrayAdapter extends ArrayAdapter<ItemList> {
         }
         return v;
     }
+    public void removeItem(int position){
+        this.items.remove(position);
+        notifyDataSetChanged();
+    }
 }
 
 

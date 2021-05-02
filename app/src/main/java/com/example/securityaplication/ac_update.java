@@ -74,13 +74,17 @@ public class ac_update extends AppCompatActivity {
     //fim das variáveis de entrada.
     SQLiteDatabase db;
     Cursor cursor;
-    public int idRegistro = 1;
+    public long idRegistro = 0;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ac_cadastro);
+
+        Intent intent = getIntent();
+        idRegistro = (long)intent.getSerializableExtra("idRegister");
+
         //instancia objeto de Banco de dados para manipula-lo.
         db = openOrCreateDatabase("database_sm",Context.MODE_PRIVATE, null);
         cursor = db.rawQuery("select * from tb_mats where _id="+idRegistro+";", null);
