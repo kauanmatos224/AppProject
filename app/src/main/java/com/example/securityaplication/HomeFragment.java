@@ -34,7 +34,7 @@ public class HomeFragment extends Fragment implements PopupMenu.OnMenuItemClickL
 
     ItemArrayAdapter adapter;
     private ListView listax;
-    public long dataId = 0;
+    public int dataId = 0;
     ItemList test;
     int itemPos = 0;
 
@@ -114,7 +114,8 @@ public class HomeFragment extends Fragment implements PopupMenu.OnMenuItemClickL
                 ItemList item = adapter.getItem(position);//pega valores de uma linha a partir da posição do item na lista array.
                 itemPos = position; //posição dos elementos no listView.
 
-                Toast.makeText(getContext(),"Item selected: "+ item.getId(),   Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getContext(),"Item selected: "+ item.getId(),   Toast.LENGTH_SHORT).show();
+                dataId = Integer.parseInt(item.getId());
                 showPopup(adapterView);
 
 
@@ -137,10 +138,8 @@ public class HomeFragment extends Fragment implements PopupMenu.OnMenuItemClickL
         String sqlCommand = "delete from tb_mats where(_id="+dataId+");";
         switch(menuItem.getItemId()){
             case R.id.itemAlterar:
-                Toast.makeText(getActivity(), "Item 1 clicked", Toast.LENGTH_LONG).show();
-                /*((MainActivity)getActivity()).telaUpdate(dataId);
-                intent.putExtra("idRegister", dataId);
-                */
+                //Toast.makeText(getActivity(), "Item 1 clicked", Toast.LENGTH_LONG).show();
+                ((MainActivity)getActivity()).telaUpdate(dataId);
 
                 return true;
             case R.id.itemExcluir:

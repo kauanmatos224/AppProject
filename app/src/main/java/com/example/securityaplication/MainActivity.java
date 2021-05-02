@@ -70,4 +70,20 @@ public class MainActivity extends AppCompatActivity {
         inflater.inflate(R.menu.menu,menu);
         return true;
     }
+    public void telaUpdate(int dataInt){
+        Intent intent = new Intent(MainActivity.this, ac_update.class);
+        intent.putExtra("IdRegister", dataInt);
+        startActivity(intent);
+    }
+    public void telaRecuperar(int dataInt){
+        Intent intent = new Intent(MainActivity.this, reportarPerda.class);
+        intent.putExtra("IdRegister", dataInt);
+        startActivity(intent);
+    }
+    public void telaEmprestar(int dataInt){
+        Intent intent = new Intent(MainActivity.this, lembrete.class);
+        intent.putExtra("IdRegister", dataInt);
+        startActivity(intent);
+    }
+
 }
