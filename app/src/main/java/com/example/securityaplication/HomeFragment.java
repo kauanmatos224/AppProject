@@ -137,6 +137,11 @@ public class HomeFragment extends Fragment implements PopupMenu.OnMenuItemClickL
     public boolean onMenuItemClick(MenuItem menuItem) {
         String sqlCommand = "delete from tb_mats where(_id="+dataId+");";
         switch(menuItem.getItemId()){
+            case R.id.itemInformações:
+                Toast.makeText(getActivity(), "INFO", Toast.LENGTH_LONG).show();
+
+                return true;
+
             case R.id.itemAlterar:
                 //Toast.makeText(getActivity(), "Item 1 clicked", Toast.LENGTH_LONG).show();
                 ((MainActivity)getActivity()).telaUpdate(dataId);
