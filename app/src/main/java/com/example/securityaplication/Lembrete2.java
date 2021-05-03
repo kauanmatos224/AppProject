@@ -1,11 +1,15 @@
 package com.example.securityaplication;
 
+import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -56,6 +60,7 @@ public class Lembrete2 extends AppCompatActivity {
     int Sseg;
     int Shoraa;
     int Smin;
+    int idRecords;
 
     // TESXTO DESCRIÇÃO DO EMPRESTIMO
     public static String DescEmp;
@@ -65,18 +70,18 @@ public class Lembrete2 extends AppCompatActivity {
     String DATA = "";
     String HORA = "";
 
-    //
-
-
-
-
+    boolean AlterState = false;
+    SQLiteDatabase db;
 
     @RequiresApi(api = Build.VERSION_CODES.O) //  <-- INICIALIZA O OBJETO LOCALDATATIME
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lembrete2);
-
+        Intent intent = getIntent();
+        idRecords = (int)intent.getSerializableExtra("IdR");
+        db = openOrCreateDatabase("database_sm", Context.MODE_PRIVATE, null);
+        Cursor cursor = db.rawQuery("select * from tb_mats where _id="+idRecords+";", null);
 
         //-------------REFERENCIAMENTO---------------------------------------------
         btnLemb = findViewById(R.id.btnLemb);
@@ -91,18 +96,10 @@ public class Lembrete2 extends AppCompatActivity {
 
         //-------------REFERENCIAMENTO---------------------------------------------
 
-
-
         btnLemb.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-
-
-
-
-
-
                 //--CAPTURA AS INFORMAÇÕEOS SOBRE A DATA E HORA FINAL, E CONVERTE EM INT---------
                 String anoC = txtAno.getText().toString();
                 ano = Integer.parseInt(anoC.format(anoC));
@@ -124,33 +121,27 @@ public class Lembrete2 extends AppCompatActivity {
 
                 System.out.println(ano+" "+mes+" "+dia+" "+horaa+" "+min);
                 //--CAPTURA AS INFORMAÇÕEOS SOBRE A DATA E HORA FINAL, E CONVERTE EM INT---------
+                if(cursor.moveToFirst()){
+                    AlterState = true;
+                    alterState();
+                    Toast.makeText(getBaseContext(), "CURSOR TRUE: "+idRecords, Toast.LENGTH_LONG).show();
+                }
+                else{
+                    Intent intentAc = new Intent(Lembrete2.this, MainActivity.class);
+                    startActivity(intentAc);
+                    finish();
+                    db.close();
+                }
 
                 CalcData();
                 maca();
-
-
-
-
-
-
-
-
             }
-
-
-
         });
-
-
-
-
-
     }
 
 
     @RequiresApi(api = Build.VERSION_CODES.O) //  <-- INICIALIZA O OBJETO LOCALDATATIME
     private void CalcData(){
-
 
         //RECUPERA A DATA DO SISTEMA E QUEBRA EM PEDAÇOS ATRINUINDO CADA PARTE A UMA VARIAVEL INT
         Date dateAno = new Date();
@@ -209,5 +200,21 @@ public class Lembrete2 extends AppCompatActivity {
     private void maca(){
         Intent intent = new Intent(this, MainActivityAbacate.class);
         startActivity(intent);
+    }
+    private void alterState(){
+        try {
+            StringBuilder sqlCommand = new StringBuilder();
+            sqlCommand.append("update tb_mats" +
+                    " set `status`='Emprestado'" +
+                    " where _id=" + idRecords);
+            db.execSQL(sqlCommand.toString());
+        }catch (Exception ex){
+            Intent intentAc = new Intent(Lembrete2.this, MainActivity.class);
+            Toast.makeText(getBaseContext(), "Ocorreu um erro, tente novamente mais tarde", Toast.LENGTH_LONG).show();
+            startActivity(intentAc);
+            finish();
+            db.close();
+        }
+        return;
     }
 }

@@ -71,19 +71,25 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
     public void telaUpdate(int dataInt){
-        Intent intent = new Intent(MainActivity.this, ac_update.class);
-        intent.putExtra("IdRegister", dataInt);
+        Intent intent = new Intent(MainActivity.this, update_activity.class);
+        intent.putExtra("idRegister", dataInt);
         startActivity(intent);
+        sqlite.close();
+        finish();
     }
     public void telaRecuperar(int dataInt){
         Intent intent = new Intent(MainActivity.this, reportarPerda.class);
-        intent.putExtra("IdRegister", dataInt);
+        intent.putExtra("IdReg", dataInt);
         startActivity(intent);
+        sqlite.close();
+        finish();
     }
     public void telaEmprestar(int dataInt){
-        Intent intent = new Intent(MainActivity.this, lembrete.class);
-        intent.putExtra("IdRegister", dataInt);
+        Intent intent = new Intent(MainActivity.this, Lembrete2.class);
+        intent.putExtra("IdR", dataInt);
         startActivity(intent);
+        sqlite.close();
+        finish();
     }
 
 }

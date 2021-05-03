@@ -27,13 +27,23 @@ public class reportarPerda extends AppCompatActivity {
 
     SQLiteDatabase database;
     Cursor cursor;
+    int idRecords;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reportar_perda);
+        Intent intent = getIntent();
+        idRecords = (int)intent.getSerializableExtra("IdReg");
         database = openOrCreateDatabase("database_sm", Context.MODE_PRIVATE, null);
-        cursor = database.rawQuery("select * from tb_mats where (_id=2)", null);
-
+        cursor = database.rawQuery("select * from tb_mats where (_id="+idRecords+")", null);
+        if(!cursor.moveToFirst()){
+            Toast.makeText(getBaseContext(), "Houve algum erro, tente novamente mais tarde", Toast.LENGTH_LONG).show();
+            Intent intentAc = new Intent(reportarPerda.this, MainActivity.class);
+            startActivity(intent);
+            database.close();
+            finish();
+        }
     }
     public void CriaPdf(View view){
 

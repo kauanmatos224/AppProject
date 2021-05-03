@@ -46,6 +46,7 @@ public class lembrete extends AppCompatActivity {
     String nome ="";
 
     String TMPN = "";
+    int ID;
 
     //--------------------CRIAÇAÕ DE VARIAVEIS-------------------------
 

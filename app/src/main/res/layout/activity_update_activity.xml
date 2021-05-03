@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#050505"
-    tools:context=".ac_update">
-
+    tools:context=".update_activity">
 
     <ImageView
         android:id="@+id/imageView"
@@ -49,7 +48,7 @@
         android:layout_width="92dp"
         android:layout_height="20dp"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="32dp"
         android:text="sem nome"
         android:textColor="#FFFFFF"
         android:textStyle="bold"
@@ -73,7 +72,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="140dp"
         android:layout_marginTop="16dp"
-        android:onClick="btnUpdate"
         android:text="salvar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inputDescri" />
@@ -85,7 +83,6 @@
         android:layout_marginStart="4dp"
         android:layout_marginTop="112dp"
         android:backgroundTint="#E91E63"
-        android:onClick="btnFimEmp"
         android:text="Finalizar empréstimo"
         android:textSize="10sp"
         app:layout_constraintStart_toEndOf="@+id/imageView"
@@ -96,7 +93,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:onClick="txtRemoveClick_removeImg"
         android:text="remover imagem"
         android:textColor="#FF0505"
         android:textStyle="bold"
@@ -119,8 +115,8 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="108dp"
+        android:layout_height="24dp"
         android:layout_marginStart="4dp"
         android:layout_marginTop="4dp"
         android:text="Nome do item:"
@@ -146,6 +142,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
         android:text="info"
         android:textColor="#F80000"
         android:textStyle="bold"
@@ -156,13 +153,12 @@
         android:id="@+id/btnHome"
         android:layout_width="wrap_content"
         android:layout_height="60dp"
+        android:backgroundTint="@color/black"
+        android:tint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        android:onClick="btnHome"
-        android:tint="@color/white"
-        android:backgroundTint="@color/black"
         app:srcCompat="@drawable/ic_baseline_home_24" />
 
     <Spinner

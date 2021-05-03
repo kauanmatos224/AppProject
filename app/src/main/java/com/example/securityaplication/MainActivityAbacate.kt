@@ -24,6 +24,7 @@
 
 package com.example.securityaplication
 
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -43,6 +44,8 @@ class MainActivityAbacate : AppCompatActivity() {
 
         findViewById<Button>(R.id.showFullScreenIntentLockScreenWithDelayButton).setOnClickListener {
             scheduleNotification(true)
+            val intent = Intent(this, MainActivity::class.java).apply{};
+            startActivity(intent);
         }
 
     }

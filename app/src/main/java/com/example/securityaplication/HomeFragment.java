@@ -143,9 +143,10 @@ public class HomeFragment extends Fragment implements PopupMenu.OnMenuItemClickL
 
                 return true;
             case R.id.itemExcluir:
-                Toast.makeText(getActivity(), "Item 2 clicked:"+dataId, Toast.LENGTH_LONG).show();
+                //Toast.makeText(getActivity(), "Item 2 clicked:"+dataId, Toast.LENGTH_LONG).show();
                 try {
                     database.execSQL(sqlCommand);
+                    Toast.makeText(getActivity(), "Item excluido", Toast.LENGTH_LONG).show();
                     adapter.removeItem(itemPos);
                     adapter.notifyDataSetChanged();
                 }catch (Exception ex){
@@ -154,10 +155,12 @@ public class HomeFragment extends Fragment implements PopupMenu.OnMenuItemClickL
 
                 return true;
             case R.id.itemEmprestar:
-                Toast.makeText(getActivity(), "Item 3 clicked", Toast.LENGTH_LONG).show();
+                //Toast.makeText(getActivity(), "Item 3 clicked", Toast.LENGTH_LONG).show();
+                ((MainActivity)getActivity()).telaEmprestar(dataId);
+
                 return true;
             case R.id.itemRecuperar:
-                Toast.makeText(getActivity(), "Item 3 clicked", Toast.LENGTH_LONG).show();
+                ((MainActivity)getActivity()).telaRecuperar(dataId);
                 return true;
             default:
                 return false;
