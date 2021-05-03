@@ -127,7 +127,7 @@ public class HomeFragment extends Fragment implements PopupMenu.OnMenuItemClickL
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     public void showPopup(View v){
-        PopupMenu popup = new PopupMenu(getActivity(), v, Gravity.NO_GRAVITY,R.attr.actionOverflowMenuStyle, 0);
+        PopupMenu popup = new PopupMenu(getActivity(), v, Gravity.END,R.attr.actionOverflowMenuStyle, 0);
         popup.setOnMenuItemClickListener(this);
         popup.inflate(R.menu.menupopup);
         popup.show();

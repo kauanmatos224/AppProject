@@ -24,8 +24,8 @@
         android:layout_marginStart="28dp"
         android:layout_marginTop="32dp"
         android:ems="10"
+        android:hint="MES"
         android:inputType="date"
-        android:text="MES"
         app:layout_constraintStart_toEndOf="@+id/txtAno"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
@@ -37,7 +37,7 @@
         android:layout_marginTop="32dp"
         android:ems="10"
         android:inputType="date"
-        android:text="DIA"
+        android:hint="DIA"
         app:layout_constraintStart_toEndOf="@+id/txtMEs"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
@@ -49,7 +49,7 @@
         android:layout_marginTop="40dp"
         android:ems="10"
         android:inputType="time"
-        android:text="HORA"
+        android:hint="HORA"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
@@ -61,7 +61,7 @@
         android:layout_marginTop="32dp"
         android:ems="10"
         android:inputType="date"
-        android:text="ANO"
+        android:hint="ANO"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
@@ -83,7 +83,7 @@
         android:layout_marginTop="40dp"
         android:ems="10"
         android:inputType="time"
-        android:text="MIN"
+        android:hint="MIN"
         app:layout_constraintStart_toEndOf="@+id/txtHora"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
