@@ -23,10 +23,7 @@ import java.util.Date;
 import static java.time.LocalDateTime.of;
 
 @RequiresApi(api = Build.VERSION_CODES.O)
-public class Lembrete2 extends AppCompatActivity {
-
-
-
+public class Lembrete extends AppCompatActivity {
 
     EditText descEmp;
     Button btnLemb;
@@ -124,10 +121,9 @@ public class Lembrete2 extends AppCompatActivity {
                 if(cursor.moveToFirst()){
                     AlterState = true;
                     alterState();
-                    Toast.makeText(getBaseContext(), "CURSOR TRUE: "+idRecords, Toast.LENGTH_LONG).show();
                 }
                 else{
-                    Intent intentAc = new Intent(Lembrete2.this, MainActivity.class);
+                    Intent intentAc = new Intent(Lembrete.this, MainActivity.class);
                     startActivity(intentAc);
                     finish();
                     db.close();
@@ -209,7 +205,7 @@ public class Lembrete2 extends AppCompatActivity {
                     " where _id=" + idRecords);
             db.execSQL(sqlCommand.toString());
         }catch (Exception ex){
-            Intent intentAc = new Intent(Lembrete2.this, MainActivity.class);
+            Intent intentAc = new Intent(Lembrete.this, MainActivity.class);
             Toast.makeText(getBaseContext(), "Ocorreu um erro, tente novamente mais tarde", Toast.LENGTH_LONG).show();
             startActivity(intentAc);
             finish();

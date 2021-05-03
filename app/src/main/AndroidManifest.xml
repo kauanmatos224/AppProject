@@ -29,9 +29,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Lembrete2" />
+        <activity android:name=".Lembrete" />
         <activity android:name=".CallActivity" />
-        <activity android:name=".lembrete" />
         <activity android:name=".materiais_ac">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
