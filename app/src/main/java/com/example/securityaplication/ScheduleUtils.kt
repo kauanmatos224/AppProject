@@ -34,7 +34,7 @@ private fun Context.getReceiver(isLockScreen: Boolean): PendingIntent {
     )
 }
 @RequiresApi(Build.VERSION_CODES.O)
-var LdifiMilis: Long = Lembrete2.difMilis
+var LdifiMilis: Long = Lembrete.difMilis
 
 
 

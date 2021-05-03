@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
         finish();
     }
     public void telaEmprestar(int dataInt){
-        Intent intent = new Intent(MainActivity.this, Lembrete2.class);
+        Intent intent = new Intent(MainActivity.this, Lembrete.class);
         intent.putExtra("IdR", dataInt);
         startActivity(intent);
         sqlite.close();

@@ -61,7 +61,7 @@ public class ac_transitions extends AppCompatActivity {
 
     // REALIZA TRANSIÇAÕ PARA A ACTIVITY LEMBRETE
     private void Lembrete(){
-        Intent intent = new Intent(this, Lembrete2.class);
+        Intent intent = new Intent(this, Lembrete.class);
         startActivity(intent);
 
     }
