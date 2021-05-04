@@ -97,7 +97,7 @@ public class splash extends AppCompatActivity {
 
     private void mostrarMainActivity() {
         Intent intent = new Intent(
-                this,ac_transitions.class
+                this,MainActivity.class
         );
         startActivity(intent);
         finish();

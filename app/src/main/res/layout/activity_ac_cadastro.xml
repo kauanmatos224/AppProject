@@ -12,15 +12,11 @@
         android:id="@+id/spinnerCateg"
         android:layout_width="357dp"
         android:layout_height="21dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="5dp"
         android:background="#FFFFFF"
         android:entries="@array/array_ListaCateg"
         android:prompt="@string/stringCateg"
-        app:layout_constraintBottom_toTopOf="@+id/textView4"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
@@ -30,24 +26,27 @@
         android:layout_height="102dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="4dp"
+        android:layout_marginEnd="24dp"
         android:background="#FFFFFF"
         android:ems="10"
         android:gravity="start|top"
+        android:hint="Ex: Livro de capa marrom, grossa, 200 pgs, com nome na primeira pagina..."
         android:inputType="textMultiLine"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <TextView
         android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="50dp"
+        android:layout_width="67dp"
+        android:layout_height="19dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="28dp"
         android:text="Descrição:"
         android:textColor="#FFFFFF"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/spinnerCateg" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -63,9 +62,9 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_width="94dp"
+        android:layout_height="19dp"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="4dp"
         android:text="Nome do item:"
         android:textColor="#FFFFFF"
@@ -77,7 +76,7 @@
         android:id="@+id/inputNome"
         android:layout_width="175dp"
         android:layout_height="29dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="4dp"
         android:background="#FFFFFF"
         android:ems="10"
@@ -87,8 +86,8 @@
 
     <TextView
         android:id="@+id/txtRemove"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="109dp"
+        android:layout_height="19dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="4dp"
         android:onClick="txtRemoveClick_removeImg"
@@ -101,38 +100,40 @@
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="66dp"
+        android:layout_height="19dp"
+        android:layout_marginStart="23dp"
+        android:layout_marginTop="9dp"
         android:text="Categoria:"
         android:textColor="#FFFFFF"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/txtRemove" />
 
     <Button
         android:id="@+id/btnCadastra"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="148dp"
+        android:layout_width="113dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="160dp"
         android:layout_marginTop="17dp"
+        android:layout_marginEnd="159dp"
         android:onClick="btnCadastra"
         android:text="Cadastrar"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inputDescri" />
 
     <ImageButton
         android:id="@+id/btnHome"
-        android:layout_width="wrap_content"
+        android:layout_width="48dp"
         android:layout_height="60dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="192dp"
+        android:layout_marginTop="308dp"
+        android:backgroundTint="@color/black"
         android:onClick="btnHome"
         android:tint="@color/white"
-        android:backgroundTint="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnCadastra"
         app:srcCompat="@drawable/ic_baseline_home_24" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

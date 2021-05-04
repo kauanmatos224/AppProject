@@ -108,6 +108,14 @@ public class reportarPerda extends AppCompatActivity {
 
         documentoPdf.finishPage(novaPagina);
         File filePath = new File(docPath);
+        StringBuilder sqlCommand = new StringBuilder();
+        try{
+            sqlCommand.append("update tb_mats" +
+                    " set `status`='Perdido'" +
+                    " where _id="+idRecords+";");
+
+        }catch (Exception ex){
+        }
         try{
             documentoPdf.writeTo(new FileOutputStream(filePath));
         }catch (Exception error){
