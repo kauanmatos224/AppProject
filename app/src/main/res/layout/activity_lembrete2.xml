@@ -1,134 +1,144 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000000"
+    android:background="@color/black"
     tools:context=".Lembrete2">
 
-    <ImageButton
-        android:id="@+id/btnHome2"
-        android:layout_width="wrap_content"
-        android:layout_height="60dp"
-        android:layout_marginTop="302dp"
-        android:backgroundTint="@color/black"
-        android:onClick="btnHome"
-        android:tint="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnLemb"
-        app:srcCompat="@drawable/ic_baseline_home_24" />
-
     <TextView
+        android:textSize="15sp"
+        android:background="@color/teal_700"
+        android:layout_marginTop="90dp"
+        android:layout_centerHorizontal="true"
         android:id="@+id/textView5"
-        android:layout_width="106dp"
-        android:layout_height="28dp"
-        android:layout_marginTop="92dp"
-        android:text="Data: 00/ 00/00"
-        android:textColor="#FDFDFD"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Data: 00/00/00"
+        android:textColor="@color/white" />
 
     <EditText
-        android:id="@+id/txtMEs"
-        android:layout_width="74dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="16dp"
-        android:background="#FFFFFF"
-        android:ems="10"
-        android:hint="MES"
-        android:inputType="date"
-        app:layout_constraintEnd_toStartOf="@+id/txtDia"
-        app:layout_constraintStart_toEndOf="@+id/txtAno"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
-    <EditText
-        android:id="@+id/txtDia"
-        android:layout_width="85dp"
-        android:layout_height="52dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="71dp"
-        android:background="#FFFFFF"
-        android:ems="10"
-        android:hint="DIA"
-        android:inputType="date"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/txtMEs"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
-
-    <EditText
-        android:id="@+id/txtHora"
-        android:layout_width="75dp"
-        android:layout_height="44dp"
-        android:layout_marginStart="104dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="10dp"
-        android:background="#FFFFFF"
-        android:ems="10"
-        android:hint="HORA"
-        android:inputType="time"
-        app:layout_constraintEnd_toStartOf="@+id/TxtMin"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
-
-    <EditText
         android:id="@+id/txtAno"
-        android:layout_width="86dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="20dp"
-        android:background="#FFFFFF"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginTop="130dp"
+        android:layout_toRightOf="@id/txtMEs"
+        android:background="#bf6767"
         android:ems="10"
         android:hint="ANO"
         android:inputType="date"
-        app:layout_constraintEnd_toStartOf="@+id/txtMEs"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textColorHint="#D3D3D3" />
+
+    <EditText
+        android:id="@+id/txtMEs"
+        android:layout_width="144dp"
+        android:layout_height="35dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="130dp"
+        android:background="#4daaff"
+        android:ems="10"
+        android:hint="MES"
+        android:inputType="date"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textColorHint="#D3D3D3" />
+
+    <EditText
+        android:id="@+id/txtDia"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginTop="130dp"
+        android:layout_toLeftOf="@id/txtMEs"
+        android:background="#007F00"
+        android:ems="10"
+        android:hint="DIA"
+        android:inputType="date"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textColorHint="#D3D3D3" />
+
+    <TextView
+        android:textSize="15sp"
+        android:background="@color/teal_700"
+        android:layout_marginTop="220dp"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Horário: 00:00"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="260dp"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/positioner"/>
+
+    <EditText
+        android:id="@+id/txtHora"
+        android:background="#007F00"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginTop="260dp"
+        android:layout_toLeftOf="@id/positioner"
+        android:ems="10"
+        android:hint="HORA"
+        android:inputType="time"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textColorHint="#D3D3D3" />
+
+    <EditText
+        android:id="@+id/TxtMin"
+        android:background="#bf6767"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginTop="260dp"
+        android:layout_toRightOf="@id/positioner"
+        android:ems="10"
+        android:hint="MIN"
+        android:inputType="time"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textColorHint="#D3D3D3" />
+
+    <TextView
+        android:id="@+id/txtPessoa"
+        android:textSize="15sp"
+        android:background="@color/teal_700"
+        android:layout_marginTop="350dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:text="A quem foi emprestado"
+        android:layout_centerHorizontal="true"
+        />
+
+    <EditText
+        android:textColorHint="#D3D3D3"
+        android:hint="NOME DA PESSOA"
+        android:textColor="@color/white"
+        android:layout_marginTop="390dp"
+        android:layout_centerHorizontal="true"
+        android:background="#4daaff"
+        android:textAlignment="center"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"/>
 
     <Button
+        android:layout_marginTop="480dp"
         android:id="@+id/btnLemb"
-        android:layout_width="193dp"
-        android:layout_height="74dp"
-        android:layout_marginTop="76dp"
-        android:text="DEFINIR IRNFORMAÇÕES"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:text="DEFINIR LEMBRETE"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TxtMin" />
 
-    <EditText
-        android:id="@+id/TxtMin"
-        android:layout_width="75dp"
-        android:layout_height="44dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="114dp"
-        android:background="#FFFFFF"
-        android:ems="10"
-        android:hint="MIN"
-        android:inputType="time"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/txtHora"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
-
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="76dp"
-        android:layout_height="28dp"
-        android:layout_marginTop="40dp"
-        android:text="Hora: 00:00"
-        android:textColor="#FFFFFF"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtMEs" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>
