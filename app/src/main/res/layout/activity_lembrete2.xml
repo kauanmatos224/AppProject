@@ -120,15 +120,16 @@
         />
 
     <EditText
-        android:textColorHint="#D3D3D3"
-        android:hint="NOME DA PESSOA"
-        android:textColor="@color/white"
-        android:layout_marginTop="390dp"
-        android:layout_centerHorizontal="true"
-        android:background="#4daaff"
-        android:textAlignment="center"
+        android:id="@+id/editNome"
         android:layout_width="match_parent"
-        android:layout_height="35dp"/>
+        android:layout_height="35dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="390dp"
+        android:background="#4daaff"
+        android:hint="NOME DA PESSOA"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textColorHint="#D3D3D3" />
 
     <Button
         android:layout_marginTop="480dp"

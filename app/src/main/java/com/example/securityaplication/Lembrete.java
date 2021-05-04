@@ -35,10 +35,10 @@ public class Lembrete extends AppCompatActivity {
     EditText txtAno;
     EditText txtMes;
     EditText txtDia;
-
-
+    EditText txtNome;
     EditText txtHora;
     EditText txtMin;
+    Cursor cursor;
 
 ///------CAPTURA INFORMAÇÕES SORE A DATA DE EMISSAÃO DO LEMBRETE--------
 
@@ -78,13 +78,11 @@ public class Lembrete extends AppCompatActivity {
         Intent intent = getIntent();
         idRecords = (int)intent.getSerializableExtra("IdR");
         db = openOrCreateDatabase("database_sm", Context.MODE_PRIVATE, null);
-        Cursor cursor = db.rawQuery("select * from tb_mats where _id="+idRecords+";", null);
+        cursor = db.rawQuery("select * from tb_mats where _id="+idRecords+";", null);
 
         //-------------REFERENCIAMENTO---------------------------------------------
         btnLemb = findViewById(R.id.btnLemb);
-
-
-
+        txtNome = findViewById(R.id.editNome);
         txtAno = findViewById(R.id.txtAno);
         txtMes = findViewById(R.id.txtMEs);
         txtMin = findViewById(R.id.TxtMin);
@@ -203,7 +201,12 @@ public class Lembrete extends AppCompatActivity {
             sqlCommand.append("update tb_mats" +
                     " set `status`='Emprestado'" +
                     " where _id=" + idRecords);
+            StringBuilder sqlCommand1 = new StringBuilder();
+            sqlCommand1.append("update tb_mats"+
+                    " set descri_emp='Item emprestado para "+txtNome+".'" +
+                    " where _id="+idRecords+";");
             db.execSQL(sqlCommand.toString());
+            db.execSQL(sqlCommand1.toString());
         }catch (Exception ex){
             Intent intentAc = new Intent(Lembrete.this, MainActivity.class);
             Toast.makeText(getBaseContext(), "Ocorreu um erro, tente novamente mais tarde", Toast.LENGTH_LONG).show();

@@ -287,7 +287,7 @@ public class ac_cadastro extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Imagem movida com sucesso!", Toast.LENGTH_SHORT).show();
                 } catch (IOException e) {
                     e.printStackTrace();
-                    Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
                 if (notDirCreat = false) {
                     sql.append("'").append(novaImagem.getPath()).append("',");
