@@ -203,7 +203,7 @@ public class Lembrete extends AppCompatActivity {
                     " where _id=" + idRecords);
             StringBuilder sqlCommand1 = new StringBuilder();
             sqlCommand1.append("update tb_mats"+
-                    " set descri_emp='Item emprestado para "+txtNome+".'" +
+                    " set descri_emp='Item emprestado para "+txtNome.getText().toString()+".'" +
                     " where _id="+idRecords+";");
             db.execSQL(sqlCommand.toString());
             db.execSQL(sqlCommand1.toString());
