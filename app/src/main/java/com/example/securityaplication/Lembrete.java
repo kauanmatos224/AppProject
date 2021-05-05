@@ -14,6 +14,7 @@ import android.widget.Toast;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.Instant;
@@ -31,7 +32,6 @@ public class Lembrete extends AppCompatActivity {
     public static long difMilis;
 
 ///------CAPTURA INFORMAÇÕES SORE A DATA DE EMISSAÃO DO LEMBRETE--------
-
     EditText txtAno;
     EditText txtMes;
     EditText txtDia;
@@ -39,7 +39,7 @@ public class Lembrete extends AppCompatActivity {
     EditText txtHora;
     EditText txtMin;
     Cursor cursor;
-
+    String dateSys;
 ///------CAPTURA INFORMAÇÕES SORE A DATA DE EMISSAÃO DO LEMBRETE--------
 
     //VARIVEIS DO TEMPO FINAL
@@ -95,6 +95,7 @@ public class Lembrete extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
+                dateSys = getDate();
                 //--CAPTURA AS INFORMAÇÕEOS SOBRE A DATA E HORA FINAL, E CONVERTE EM INT---------
                 String anoC = txtAno.getText().toString();
                 ano = Integer.parseInt(anoC.format(anoC));
@@ -203,7 +204,8 @@ public class Lembrete extends AppCompatActivity {
                     " where _id=" + idRecords);
             StringBuilder sqlCommand1 = new StringBuilder();
             sqlCommand1.append("update tb_mats"+
-                    " set descri_emp='Item emprestado para "+txtNome.getText().toString()+".'" +
+                    " set descri_emp='Item emprestado para "+txtNome.getText().toString()+"\n" +
+                    " em " + dateSys+ " para ser recuperado no dia "+txtDia.getText().toString()+"/"+txtMes.getText().toString()+"/"+txtAno.getText().toString()+" às "+txtHora.getText().toString()+":"+txtMin.getText().toString()+".';"+
                     " where _id="+idRecords+";");
             db.execSQL(sqlCommand.toString());
             db.execSQL(sqlCommand1.toString());
@@ -220,4 +222,10 @@ public class Lembrete extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
+    private String getDate(){
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/YYYY");
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
+
 }

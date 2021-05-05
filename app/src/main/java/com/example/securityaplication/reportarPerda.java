@@ -81,7 +81,7 @@ public class reportarPerda extends AppCompatActivity {
 
         scaledBitmap = Bitmap.createScaledBitmap(bmpImg, 150, 200, false );
         String titulo = "RELATO DE PERDA DE MATERIAL("+nome_item+")";
-        String linha = "Esse material com as seguintes características:" + descri_item;
+        String linha = descri_item;
         String linha2="Foi perdido, se alguém o encontra-lo, entre em contato para a devolução";
         String linha3="desse material o mais rápido possível.";
 
@@ -100,11 +100,12 @@ public class reportarPerda extends AppCompatActivity {
         Paint myPaint = new Paint();
         canvas.drawBitmap(scaledBitmap, 180, 30, myPaint);
         if(!descri_item.equals("")&&!descri_item.equals(null)) {
-            canvas.drawText(linha, 10, 260, corDoTexto);
+            canvas.drawText("Esse material com as seguintes características:",10,260, corDoTexto);
+            canvas.drawText(linha, 10, 275, corDoTexto);
         }
 
-        canvas.drawText(linha2, 10, 290, corDoTexto);
-        canvas.drawText(linha3, 10, 305, corDoTexto);
+        canvas.drawText(linha2, 10, 320, corDoTexto);
+        canvas.drawText(linha3, 10, 335, corDoTexto);
 
         documentoPdf.finishPage(novaPagina);
         File filePath = new File(docPath);

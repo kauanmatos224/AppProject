@@ -127,6 +127,7 @@
         android:layout_marginTop="380dp"
         android:background="#4daaff"
         android:hint="NOME DA PESSOA"
+        android:maxLength="50"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textColorHint="#D3D3D3" />

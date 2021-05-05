@@ -205,7 +205,7 @@ public class update_activity extends AppCompatActivity {
     private void RemoveImg(){
         ImageView iv = (ImageView) findViewById(R.id.imageView);
 
-        Drawable drawable= getResources().getDrawable(R.drawable.img_add);
+        Drawable drawable= getResources().getDrawable(R.drawable.sem_foto);
         iv.setImageDrawable(drawable); //seta a imagem de seleção de foto do item (imagem padrão)
 
         TextView txtRemove = (TextView)findViewById(R.id.txtRemove);

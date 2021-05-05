@@ -92,14 +92,15 @@
         android:id="@+id/inputDescri"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:layout_marginLeft="20dp"
         android:layout_centerHorizontal="true"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="335dp"
         android:background="#FFFFFF"
         android:ems="10"
         android:gravity="start|top"
-        android:hint="Ex: Livro de capa marrom, grossa, 200 pgs, com nome na primeira pagina..."
-        android:inputType="textMultiLine" />
+        android:hint="Ex: Livro de capa marrom, grossa, 200 pgs, com nome na primeira pagina...                                              máximo 70 caracteres"
+        android:inputType="textMultiLine"
+        android:maxLength="70" />
 
     <Button
         android:id="@+id/btnCadastra"

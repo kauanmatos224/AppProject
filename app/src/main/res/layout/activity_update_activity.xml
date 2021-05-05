@@ -152,10 +152,10 @@
 
     <Button
         android:id="@+id/btnUpdate"
-        android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="500dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="600dp"
         android:onClick="btnAtualiza"
         android:text="alterar"
         app:layout_constraintStart_toStartOf="parent"
