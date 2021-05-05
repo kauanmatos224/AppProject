@@ -10,7 +10,7 @@
     <TextView
         android:textSize="15sp"
         android:background="@color/teal_700"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="20dp"
         android:layout_centerHorizontal="true"
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
@@ -23,7 +23,7 @@
         android:id="@+id/txtAno"
         android:layout_width="wrap_content"
         android:layout_height="35dp"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="60dp"
         android:layout_toRightOf="@id/txtMEs"
         android:background="#bf6767"
         android:ems="10"
@@ -38,7 +38,7 @@
         android:layout_width="144dp"
         android:layout_height="35dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="60dp"
         android:background="#4daaff"
         android:ems="10"
         android:hint="MES"
@@ -51,7 +51,7 @@
         android:id="@+id/txtDia"
         android:layout_width="wrap_content"
         android:layout_height="35dp"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="60dp"
         android:layout_toLeftOf="@id/txtMEs"
         android:background="#007F00"
         android:ems="10"
@@ -64,7 +64,7 @@
     <TextView
         android:textSize="15sp"
         android:background="@color/teal_700"
-        android:layout_marginTop="210dp"
+        android:layout_marginTop="150dp"
         android:layout_centerHorizontal="true"
         android:id="@+id/textView7"
         android:layout_width="wrap_content"
@@ -75,7 +75,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="250dp"
+        android:layout_marginTop="190dp"
         android:layout_centerHorizontal="true"
         android:id="@+id/positioner"/>
 
@@ -84,7 +84,7 @@
         android:background="#007F00"
         android:layout_width="wrap_content"
         android:layout_height="35dp"
-        android:layout_marginTop="250dp"
+        android:layout_marginTop="190dp"
         android:layout_toLeftOf="@id/positioner"
         android:ems="10"
         android:hint="HORA"
@@ -98,7 +98,7 @@
         android:background="#bf6767"
         android:layout_width="wrap_content"
         android:layout_height="35dp"
-        android:layout_marginTop="250dp"
+        android:layout_marginTop="190dp"
         android:layout_toRightOf="@id/positioner"
         android:ems="10"
         android:hint="MIN"
@@ -111,7 +111,7 @@
         android:id="@+id/txtPessoa"
         android:textSize="15sp"
         android:background="@color/teal_700"
-        android:layout_marginTop="340dp"
+        android:layout_marginTop="280dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/white"
@@ -124,7 +124,7 @@
         android:layout_width="match_parent"
         android:layout_height="35dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="380dp"
+        android:layout_marginTop="320dp"
         android:background="#4daaff"
         android:hint="NOME DA PESSOA"
         android:maxLength="50"
@@ -133,7 +133,7 @@
         android:textColorHint="#D3D3D3" />
 
     <Button
-        android:layout_marginTop="470dp"
+        android:layout_marginTop="410dp"
         android:id="@+id/btnLemb"
         android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
