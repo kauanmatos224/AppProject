@@ -1,122 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#050505"
+    android:background="@color/black"
     tools:context=".ac_cadastro">
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="15dp"
+        android:contextClickable="true"
+        android:onClick="imgClick"
+        android:src="@drawable/img_add" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@id/imageView"
+        android:text="Nome do item:"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/inputNome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="40dp"
+        android:layout_toRightOf="@id/imageView"
+        android:background="#FFFFFF"
+        android:ems="10"
+        android:inputType="textPersonName" />
+
+    <TextView
+        android:id="@+id/txtRemove"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="220dp"
+        android:onClick="txtRemoveClick_removeImg"
+        android:text="Remover imagem"
+        android:textColor="#FF0505"
+        android:textStyle="bold"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="250dp"
+        android:layout_marginLeft="10dp"
+        android:textSize="15sp"
+        android:text="Categoria:"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold" />
 
     <Spinner
         android:id="@+id/spinnerCateg"
-        android:layout_width="357dp"
-        android:layout_height="21dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginLeft="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="275dp"
+        android:layout_centerHorizontal="true"
         android:background="#FFFFFF"
         android:entries="@array/array_ListaCateg"
-        android:prompt="@string/stringCateg"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        android:prompt="@string/stringCateg" />
+
+
+    <TextView
+        android:id="@+id/textView4"
+        android:textSize="15sp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="310dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Descrição:"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"/>
 
     <EditText
         android:id="@+id/inputDescri"
-        android:layout_width="358dp"
-        android:layout_height="102dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="24dp"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginLeft="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="335dp"
         android:background="#FFFFFF"
         android:ems="10"
         android:gravity="start|top"
         android:hint="Ex: Livro de capa marrom, grossa, 200 pgs, com nome na primeira pagina..."
-        android:inputType="textMultiLine"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="67dp"
-        android:layout_height="19dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="28dp"
-        android:text="Descrição:"
-        android:textColor="#FFFFFF"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerCateg" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="193dp"
-        android:layout_height="201dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="4dp"
-        android:contextClickable="true"
-        android:onClick="imgClick"
-        android:src="@drawable/img_add"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="94dp"
-        android:layout_height="19dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="4dp"
-        android:text="Nome do item:"
-        android:textColor="#FFFFFF"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/inputNome"
-        android:layout_width="175dp"
-        android:layout_height="29dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="4dp"
-        android:background="#FFFFFF"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-    <TextView
-        android:id="@+id/txtRemove"
-        android:layout_width="109dp"
-        android:layout_height="19dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="4dp"
-        android:onClick="txtRemoveClick_removeImg"
-        android:text="remover imagem"
-        android:textColor="#FF0505"
-        android:textStyle="bold"
-        android:visibility="invisible"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="66dp"
-        android:layout_height="19dp"
-        android:layout_marginStart="23dp"
-        android:layout_marginTop="9dp"
-        android:text="Categoria:"
-        android:textColor="#FFFFFF"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtRemove" />
+        android:inputType="textMultiLine" />
 
     <Button
         android:id="@+id/btnCadastra"
-        android:layout_width="113dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="160dp"
-        android:layout_marginTop="17dp"
-        android:layout_marginEnd="159dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="470dp"
         android:onClick="btnCadastra"
         android:text="Cadastrar"
         app:layout_constraintEnd_toEndOf="parent"
@@ -125,10 +115,10 @@
 
     <ImageButton
         android:id="@+id/btnHome"
-        android:layout_width="48dp"
+        android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginStart="192dp"
-        android:layout_marginTop="308dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
         android:backgroundTint="@color/black"
         android:onClick="btnHome"
         android:tint="@color/white"
@@ -136,4 +126,4 @@
         app:layout_constraintTop_toBottomOf="@+id/btnCadastra"
         app:srcCompat="@drawable/ic_baseline_home_24" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>
