@@ -3,6 +3,7 @@ package com.example.securityaplication;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 
 import android.content.Context;
 import android.content.Intent;
@@ -33,6 +34,7 @@ public class reportarPerda extends AppCompatActivity {
     int idRecords;
     PdfDocument documentoPdf;
     int CODE_PERMISSION = 8;
+    boolean dirCreated = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,37 +63,48 @@ public class reportarPerda extends AppCompatActivity {
         File rootPath = new File(Environment.getExternalStorageDirectory() + dirDocs);
         //File rootPath = new File(Environment.getExternalStorageDirectory() + dirDocs+"/RelatoPerda_"+nome_item+id+".pdf");
         File absoluteFileName = new File(rootPath.getPath()+"/RelatoPerda_"+nome_item+id+".pdf");
-        if(!rootPath.exists()){
-            rootPath.mkdirs();
+        /*if(!rootPath.exists()){
+            rootPath.mkdir();
             dirCreationState = 1;
         }
         if(!rootPath.exists()){
             dirDocs = "/Documents";
-            rootPath.mkdirs();
+            rootPath.mkdir();
             dirCreationState = 2;
         }
         if(!rootPath.exists()){
            // dirDocs="";
             rootPath = new File(Environment.getStorageDirectory()+dirDocs);
-            rootPath.mkdirs();
+            rootPath.mkdir();
             dirCreationState = 3;
-        }
+        }*/
         if(!rootPath.exists()){
             rootPath = getFilesDir();
+            rootPath.mkdir();
             dirCreationState = 4;
         }
-        if(!rootPath.exists()){
+        /*if(!rootPath.exists()){
+            dirCreationState = 5;
             absoluteFileName = new File(rootPath.getPath()+"/RelatoPerda_"+nome_item+id+".pdf");
-        }
+            rootPath.mkdirs();
+        }*/
         absoluteFileName = new File(rootPath.getPath()+"/RelatoPerda_"+nome_item+id+".pdf");
+        if(rootPath.exists()){
+            dirCreated = true;
+            Log.i("Status do Diretório:",String.valueOf(dirCreated));
+            Log.i("PATH ARQUIVO: ", absoluteFileName.getPath());
+        }
 
-        Log.i("estado de criação pasta", String.valueOf(dirCreationState));
+        Log.i("Estado de criação Pasta", String.valueOf(dirCreationState));
         String pathImg = cursor.getString(2);
         Bitmap scaledBitmap, bmpImg;
         bmpImg = BitmapFactory.decodeFile(pathImg);
         String docPath = absoluteFileName.getPath();
 
+        try{
         scaledBitmap = Bitmap.createScaledBitmap(bmpImg, 150, 200, false );
+        }catch (Exception ex){scaledBitmap=null;}
+
         String titulo = "RELATO DE PERDA DE MATERIAL("+nome_item+")";
         String linha = descri_item;
         String linha2="Foi perdido, se alguém o encontra-lo, entre em contato para a devolução";
@@ -110,7 +123,9 @@ public class reportarPerda extends AppCompatActivity {
 
         canvas.drawText(titulo, 125, 15, corDoTexto);
         Paint myPaint = new Paint();
-        canvas.drawBitmap(scaledBitmap, 180, 30, myPaint);
+        if(scaledBitmap!=null) {
+            canvas.drawBitmap(scaledBitmap, 180, 30, myPaint);
+        }
         if(!descri_item.equals("")&&!descri_item.equals(null)) {
             canvas.drawText("Esse material com as seguintes características:",10,260, corDoTexto);
             canvas.drawText(linha, 10, 275, corDoTexto);
@@ -155,19 +170,32 @@ public class reportarPerda extends AppCompatActivity {
         return;
     }
     private void ShareFile(String absoluteFileName){
-        final Uri arquivo = Uri.fromFile(new File(absoluteFileName));
+        Log.i("  INSHARE: ", absoluteFileName );
+        Uri arquivo = Uri.fromFile(new File(absoluteFileName));
         final Intent _intent = new Intent();
         try {
             _intent.setAction(Intent.ACTION_SEND);
-            _intent.putExtra(Intent.EXTRA_STREAM, arquivo);
-            _intent.putExtra(Intent.EXTRA_TEXT, "Venho informar a perda de um material com o seguinte anexo: ");
-            _intent.putExtra(Intent.EXTRA_TITLE, "Meu pdf");
             _intent.setType("application/pdf");
-
-            startActivity(Intent.createChooser(_intent, "Compartilhar"));
+            _intent.putExtra(Intent.EXTRA_STREAM, arquivo);
+            _intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            //startActivity(Intent.createChooser(_intent, "Compartilhar"));
+            //_intent.setPackage("com.whatsapp");
+            startActivity(_intent);
         }catch (Exception error){
-            //Toast.makeText(getBaseContext(),"Ocorreu um erro ao criar o seu relatório", Toast.LENGTH_LONG).show();
 
+
+            try {
+                final Intent iintent = new Intent();
+                Uri Uarquivo = FileProvider.getUriForFile(this, this.getPackageName() + ".provider", new File(absoluteFileName));
+                iintent.setAction(Intent.ACTION_SEND);
+                iintent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                iintent.putExtra(Intent.EXTRA_STREAM, Uarquivo);
+                iintent.setType("application/pdf");
+                //_intent.setPackage("com.whatsapp");
+                startActivity(Intent.createChooser(iintent, "Compartilhar"));
+            }catch (Exception eror){
+
+            }
         }
     }
     public void btnHome(View view){
