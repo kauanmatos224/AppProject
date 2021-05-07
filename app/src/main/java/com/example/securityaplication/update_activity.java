@@ -50,23 +50,23 @@ public class update_activity extends AppCompatActivity {
     Spinner sStatus;
     String empDescri;
 
-    //byte[] byteArray; //imagem em bytes (Blob)
     public String imgPath;
     int idRecords;
     SQLiteDatabase sqldb;
     Cursor cursor;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_activity);
-        Spinner spinner = (Spinner)findViewById(R.id.spnStatus);
+        Spinner spinner = (Spinner) findViewById(R.id.spnStatus);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                if(spinner.getSelectedItemPosition()==2){
+                if (spinner.getSelectedItemPosition() == 2) {
                     edEmp.setEnabled(true);
                     edEmp.setText(empDescri);
-                }else {
+                } else {
                     edEmp.setEnabled(false);
                     edEmp.setText("");
                 }
@@ -80,45 +80,45 @@ public class update_activity extends AppCompatActivity {
         });
 
 
-
         Intent intent = getIntent();
-        idRecords = (int)intent.getSerializableExtra("idRegister");
+        idRecords = (int) intent.getSerializableExtra("idRegister");
         sqldb = openOrCreateDatabase("database_sm", Context.MODE_PRIVATE, null);
-        if(ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED) {
-            if(ActivityCompat.shouldShowRequestPermissionRationale(this,Manifest.permission.READ_EXTERNAL_STORAGE)) {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_EXTERNAL_STORAGE)) {
 
-            }else{
+            } else {
 
-                ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}
-                        ,PERMISSAO_REQUEST);
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}
+                        , PERMISSAO_REQUEST);
             }
         }
 
         getData(idRecords);
 
     }
-    private void getData(int id){
+
+    private void getData(int id) {
 
         cursor = sqldb.rawQuery("SELECT * FROM tb_mats " +
-                "WHERE _id="+id+"", null);
-        if(cursor.moveToFirst()){
-            tNome = (TextView)findViewById(R.id.txtNome);
-            sStatus = (Spinner)findViewById(R.id.spnStatus);
-            TextView tCateg = (TextView)findViewById(R.id.txtCateg);
-            edDescri = (EditText)findViewById(R.id.inputDescri);
-            edEmp = (EditText)findViewById(R.id.descriEmp);
-            txtView = (TextView)findViewById(R.id.textView9);
-            edEmp = (EditText)findViewById(R.id.descriEmp);
+                "WHERE _id=" + id + "", null);
+        if (cursor.moveToFirst()) {
+            tNome = (TextView) findViewById(R.id.txtNome);
+            sStatus = (Spinner) findViewById(R.id.spnStatus);
+            TextView tCateg = (TextView) findViewById(R.id.txtCateg);
+            edDescri = (EditText) findViewById(R.id.inputDescri);
+            edEmp = (EditText) findViewById(R.id.descriEmp);
+            txtView = (TextView) findViewById(R.id.textView9);
+            edEmp = (EditText) findViewById(R.id.descriEmp);
             edEmp.setText(cursor.getString(6));
             empDescri = cursor.getString(6);
             Bitmap bmpImg;
             bmpImg = BitmapFactory.decodeFile(cursor.getString(2));
-            ImageView img = (ImageView)findViewById(R.id.imageView);
-            if(cursor.getString(2).equals("")|| cursor.getString(2).equals(null)){
+            ImageView img = (ImageView) findViewById(R.id.imageView);
+            if (cursor.getString(2).equals("") || cursor.getString(2).equals(null)) {
                 @SuppressLint("UseCompatLoadingForDrawables") Drawable drawable = this.getResources().getDrawable(R.drawable.sem_foto);
-                bmpImg = ((BitmapDrawable)drawable).getBitmap();
+                bmpImg = ((BitmapDrawable) drawable).getBitmap();
                 img.setImageBitmap(bmpImg);
-            }else {
+            } else {
                 img.setImageBitmap(bmpImg);
             }
             tNome.setText(cursor.getString(1));
@@ -143,13 +143,13 @@ public class update_activity extends AppCompatActivity {
             }
             edDescri.setText(cursor.getString(4));
             tCateg.setText(cursor.getString(3));
-        }
-        else{
+        } else {
 
         }
 
     }
-    public void imgClick(View view){
+
+    public void imgClick(View view) {
         Intent intent = new Intent(Intent.ACTION_PICK,
                 android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(intent, 1);
@@ -161,8 +161,8 @@ public class update_activity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK && requestCode == 1) {
             Uri selectedImage = data.getData();
-            String[] filePath = { MediaStore.Images.Media.DATA };
-            Cursor c = getContentResolver().query(selectedImage,filePath, null, null, null);
+            String[] filePath = {MediaStore.Images.Media.DATA};
+            Cursor c = getContentResolver().query(selectedImage, filePath, null, null, null);
             c.moveToFirst();
             int columnIndex = c.getColumnIndex(filePath[0]);
             String picturePath = c.getString(columnIndex);
@@ -175,23 +175,23 @@ public class update_activity extends AppCompatActivity {
             iv.setImageBitmap(thumbnail);
             imgSelecionada = true;
 
-            TextView txtRemove = (TextView)findViewById(R.id.txtRemove);
+            TextView txtRemove = (TextView) findViewById(R.id.txtRemove);
             txtRemove.setVisibility(View.VISIBLE);
-            if(thumbnail==null){
+            if (thumbnail == null) {
                 Toast.makeText(getBaseContext(), "Imagem não suportada!", Toast.LENGTH_LONG).show();
                 RemoveImg();
             }
 
         }
     }
+
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
         if (requestCode == PERMISSAO_REQUEST) {
             if (grantResults.length > 0
                     && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 // A permissão foi concedida. Pode continuar
-            }
-            else {
-                Toast.makeText(getBaseContext(), "A permissão de seleção de imagem não foi concedida."+"\n"+
+            } else {
+                Toast.makeText(getBaseContext(), "A permissão de seleção de imagem não foi concedida." + "\n" +
                         "Se quiser selecionar uma imagem, tente novamente e conceda a permissão :)", Toast.LENGTH_LONG).show();
             }
             return;
@@ -199,16 +199,17 @@ public class update_activity extends AppCompatActivity {
     }
 
     //método OnClick no TextView vermelho de remoção da imagem.
-    public void txtRemoveClick_removeImg(View view){
+    public void txtRemoveClick_removeImg(View view) {
         RemoveImg();
     }
-    private void RemoveImg(){
+
+    private void RemoveImg() {
         ImageView iv = (ImageView) findViewById(R.id.imageView);
 
-        Drawable drawable= getResources().getDrawable(R.drawable.sem_foto);
+        Drawable drawable = getResources().getDrawable(R.drawable.sem_foto);
         iv.setImageDrawable(drawable); //seta a imagem de seleção de foto do item (imagem padrão)
 
-        TextView txtRemove = (TextView)findViewById(R.id.txtRemove);
+        TextView txtRemove = (TextView) findViewById(R.id.txtRemove);
         imgSelecionada = false;
         txtRemove.setVisibility(View.GONE);
     }
@@ -222,28 +223,28 @@ public class update_activity extends AppCompatActivity {
         if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             // Verifica necessidade de explicar necessidade da permissao
             if (ActivityCompat.shouldShowRequestPermissionRationale(this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-                Toast.makeText(this,"É necessário a  de leitura e escrita!", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "É necessário a  de leitura e escrita!", Toast.LENGTH_SHORT).show();
                 ActivityCompat.requestPermissions(this,
-                        new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE, android.Manifest.permission.READ_EXTERNAL_STORAGE },
+                        new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE, android.Manifest.permission.READ_EXTERNAL_STORAGE},
                         CODE_PERMISSION);
             } else {
                 // Solicita permissao
                 ActivityCompat.requestPermissions(this,
-                        new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE,  android.Manifest.permission.READ_EXTERNAL_STORAGE},
+                        new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE, android.Manifest.permission.READ_EXTERNAL_STORAGE},
                         CODE_PERMISSION);
             }
         }
         atualizarDados();
     }
 
-    private void atualizarDados(){
+    private void atualizarDados() {
         StringBuilder sql1 = new StringBuilder();
         StringBuilder sql2 = new StringBuilder();
         StringBuilder sql3 = new StringBuilder();
         StringBuilder sql4 = new StringBuilder();
         StringBuilder sql5 = new StringBuilder();
 
-        if(imgSelecionada) {
+        if (imgSelecionada) {
             File selecionada = new File(imgPath);
             File rootPath = new File(android.os.Environment.getExternalStorageDirectory() + "/security_material/imagens/");
 
@@ -260,73 +261,104 @@ public class update_activity extends AppCompatActivity {
             }
             final File novaImagem = new File(rootPath, selecionada.getName());
             //Movemos o arquivo!
-            if(!notDirCreat) {
+            if (!notDirCreat) {
                 try {
                     moveFile(selecionada, novaImagem);
                 } catch (IOException e) {
                     e.printStackTrace();
-                    Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
                 if (notDirCreat = false) {
                     sql1.append(" update tb_mats" +
-                            " set img_path='"+novaImagem.getPath()+"'" +
-                            " where _id="+idRecords+";");
+                            " set img_path='" + novaImagem.getPath() + "'" +
+                            " where _id=" + idRecords + ";");
                 } else {
-                    sql1.append(" update tb_mats" +
-                            " set img_path='"+imgPath+"'" +
-                            " where _id="+idRecords+";");
+
+                    if (!novaImagem.exists()) {
+                        File newImg = new File(getFilesDir() + "/security_material/img/" + selecionada.getName());
+                        try {
+                            moveFile(selecionada, newImg);
+                        } catch (Exception ex) {
+                        }
+
+                        if (!newImg.exists()) {
+                            newImg = new File(getFilesDir() + "/" + selecionada.getName());
+                            try {
+                                moveFile(selecionada, newImg);
+                            } catch (Exception ex) {
+                            }
+                            if (!newImg.exists()) {
+                                sql1.append(" update tb_mats" +
+                                        " set img_path='" + imgPath + "'" +
+                                        " where _id=" + idRecords + ";");
+                            } else {
+                                sql1.append(" update tb_mats" +
+                                        " set img_path='" + newImg.getPath() + "'" +
+                                        " where _id=" + idRecords + ";");
+                            }
+                        } else {
+                            sql1.append(" update tb_mats" +
+                                    " set img_path='" + newImg.getPath() + "'" +
+                                    " where _id=" + idRecords + ";");
+
+                        }
+                    } else {
+                        sql1.append(" update tb_mats" +
+                                " set img_path='" + imgPath + "'" +
+                                " where _id=" + idRecords + ";");
+                    }
                 }
-            }else{
+            } else {
                 sql1.append(" update tb_mats" +
-                        " set img_path='"+imgPath+"'" +
-                        " where _id="+idRecords+";");
+                        " set img_path='" + imgPath + "'" +
+                        " where _id=" + idRecords + ";");
             }
 
-        }else{
+        } else {
             sql1.append(" update tb_mats" +
-                    " set img_path='"+cursor.getString(2)+"'" +
-                    " where _id="+idRecords+";");
+                    " set img_path='" + cursor.getString(2) + "'" +
+                    " where _id=" + idRecords + ";");
         }
 
-        if(sStatus.getSelectedItemPosition()==2) {
+        if (sStatus.getSelectedItemPosition() == 2) {
             sql2.append("update tb_mats" +
                     " set `status`='Emprestado'" +
                     " where _id=" + idRecords + ";");
-        }else if(sStatus.getSelectedItemPosition()==0){
+        } else if (sStatus.getSelectedItemPosition() == 0) {
             sql2.append(" update tb_mats" +
                     " set `status`='Disponível'" +
                     " where _id=" + idRecords + ";");
-        }
-        else if(sStatus.getSelectedItemPosition()==1){
+        } else if (sStatus.getSelectedItemPosition() == 1) {
             sql2.append(" update tb_mats" +
                     " set `status`='Perdido'" +
                     " where _id=" + idRecords + ";");
         }
 
         sql3.append(" update tb_mats" +
-                " set descri_item='"+edDescri.getText().toString()+"'" +
-                " where _id="+idRecords+";");
+                " set descri_item='" + edDescri.getText().toString() + "'" +
+                " where _id=" + idRecords + ";");
         sql3.append(" update tb_mats" +
-                " set descri_emp='"+edEmp.getText().toString()+"'" +
-                " where _id="+idRecords+";");
-        try{
+                " set descri_emp='" + edEmp.getText().toString() + "'" +
+                " where _id=" + idRecords + ";");
+        try {
             sqldb.execSQL(sql1.toString());
             sqldb.execSQL(sql2.toString());
             sqldb.execSQL(sql3.toString());
             sqldb.execSQL(sql4.toString());
             sqldb.execSQL(sql5.toString());
-            Toast.makeText(getBaseContext(),"As informações do item, foram alteradas",Toast.LENGTH_LONG).show();
-        }catch (Exception ex){
-            Toast.makeText(getBaseContext(),"Houve algum erro na alteração, tente novamente mais tarde",Toast.LENGTH_LONG).show();
+           // Toast.makeText(getBaseContext(), "As informações do item, foram alteradas", Toast.LENGTH_LONG).show();
+        } catch (Exception ex) {
+            //em caso de erro na gravação dos dados.
         }
-            Intent intent = new Intent(this, MainActivity.class);
-            sqldb.close();
-            startActivity(intent);
-            finish();
+        Intent intent = new Intent(this, MainActivity.class);
+        sqldb.close();
+        startActivity(intent);
+        finish();
     }
+
     private void moveFile(File sourceFile, File destFile) throws IOException {
 
-        if(sourceFile != destFile) {
+        if (sourceFile != destFile) {
             InputStream in = new FileInputStream(sourceFile);
             OutputStream out = new FileOutputStream(destFile);  // Transferindo bytes de entrada para saída
             byte[] buf = new byte[1024];
@@ -337,12 +369,12 @@ public class update_activity extends AppCompatActivity {
             in.close();
             out.close();
             imgPath = destFile.getPath();
-        }
-        else {
+        } else {
             imgPath = destFile.getPath();
         }
     }
-    public void btnHome(View view){
+
+    public void btnHome(View view) {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }

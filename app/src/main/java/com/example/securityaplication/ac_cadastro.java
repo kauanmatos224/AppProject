@@ -240,7 +240,7 @@ public class ac_cadastro extends AppCompatActivity {
         if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             // Verifica necessidade de explicar necessidade da permissao
             if (ActivityCompat.shouldShowRequestPermissionRationale(this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-                Toast.makeText(this,"É necessário a  de leitura e escrita!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,"É necessário a sua permissão!", Toast.LENGTH_SHORT).show();
                 ActivityCompat.requestPermissions(this,
                         new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE, android.Manifest.permission.READ_EXTERNAL_STORAGE },
                         CODE_PERMISSION);
@@ -276,7 +276,7 @@ public class ac_cadastro extends AppCompatActivity {
                 }
 
             } catch (Exception erro) {
-                Toast.makeText(getBaseContext(), "Erro ao criar pasta: " + erro, Toast.LENGTH_LONG).show();
+                //Toast.makeText(getBaseContext(), "Erro ao criar pasta: " + erro, Toast.LENGTH_LONG).show();
             }
             final File novaImagem = new File(rootPath, selecionada.getName());
 
@@ -339,11 +339,11 @@ public class ac_cadastro extends AppCompatActivity {
         try {
             db.execSQL(sql.toString());
             limpaEntradas();
-            Toast.makeText(getBaseContext(), "Material cadastrado com sucesso!",
-                    Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getBaseContext(), "Material cadastrado com sucesso!",
+                   // Toast.LENGTH_SHORT).show();
 
         } catch (SQLException ex) {
-            Toast.makeText(getBaseContext(),"Sentimos muito mesmo!!! Tente novamente mais tarde :(", Toast.LENGTH_LONG).show();
+            //Toast.makeText(getBaseContext(),"Sentimos muito mesmo!!! Tente novamente mais tarde :(", Toast.LENGTH_LONG).show();
         }
     }
 

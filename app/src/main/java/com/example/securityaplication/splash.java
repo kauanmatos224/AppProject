@@ -62,7 +62,7 @@ public class splash extends AppCompatActivity {
                         cur.moveToFirst();
                         if (cur.getInt (0) == 0) {
                             //nesse caso verifica-se que não há registros no banco.
-                            Toast.makeText(getBaseContext(),"Não há nenhum material ainda cadastrado", Toast.LENGTH_LONG).show();
+                            //Toast.makeText(getBaseContext(),"Não há nenhum material ainda cadastrado", Toast.LENGTH_LONG).show();
 
                             try{
                                 db.close();
@@ -70,8 +70,8 @@ public class splash extends AppCompatActivity {
                                chamaTelaCadastro();
 
                             }catch(Exception erroClosingDB){
-                                Toast.makeText(getBaseContext(),"Houve algum erro, tente novamente mais tarde :(" +
-                                        "\n"+"erro: "+erroClosingDB, Toast.LENGTH_LONG).show();
+                              //  Toast.makeText(getBaseContext(),"Houve algum erro, tente novamente mais tarde :(" +
+                                //        "\n"+"erro: "+erroClosingDB, Toast.LENGTH_LONG).show();
                             }
 
                         }
@@ -79,7 +79,7 @@ public class splash extends AppCompatActivity {
                             //nesse caso há registros no banco, então porque não direcionar
                             //para a tela dos itens? :)
                             db.close();
-                            Toast.makeText(getBaseContext(),"Que tal ver seus itens cadastrados?!", Toast.LENGTH_LONG).show();
+                            //Toast.makeText(getBaseContext(),"Que tal ver seus itens cadastrados?!", Toast.LENGTH_LONG).show();
                             mostrarMainActivity();
                         }
                     }
@@ -87,8 +87,8 @@ public class splash extends AppCompatActivity {
                 }
                 catch(Exception exErro) {
                     //em caso de erro na criação da tabela.
-                    Toast.makeText(getBaseContext(), "Error = " + exErro.getMessage(),
-                            Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getBaseContext(), "Error = " + exErro.getMessage(),
+                      //      Toast.LENGTH_LONG).show();
                 }
 
             }
