@@ -120,13 +120,14 @@
         android:id="@+id/inputDescri"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:layout_marginLeft="20dp"
         android:layout_centerHorizontal="true"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="250dp"
         android:background="#FFFFFF"
         android:ems="10"
         android:gravity="start|top"
-        android:inputType="textMultiLine" />
+        android:inputType="textMultiLine"
+        android:maxLength="70" />
 
     <TextView
         android:id="@+id/textView9"

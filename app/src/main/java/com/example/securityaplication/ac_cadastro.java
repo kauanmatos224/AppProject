@@ -295,7 +295,29 @@ public class ac_cadastro extends AppCompatActivity {
                     sql.append("'" + imgPath + "',");
                 }
             }else{
-                sql.append("'" + imgPath + "',");
+                if(!novaImagem.exists()) {
+                    if(!novaImagem.exists()){
+                        File newImg = new File(getFilesDir()+"/security_material/img/"+selecionada.getName());
+                        try {
+                            moveFile(selecionada, newImg);
+                        }catch (Exception ex){}
+
+                        if(!newImg.exists()){
+                            newImg = new File(getFilesDir()+"/"+selecionada.getName());
+                            try {
+                                moveFile(selecionada, newImg);
+                            }catch (Exception ex){}
+                            if(!newImg.exists()){
+                                sql.append("'" + imgPath + "',");
+                            }else{
+                                sql.append("'").append(newImg.getPath()).append("',");
+                            }
+                        }else{
+                            sql.append("'").append(newImg.getPath()).append("',");
+                        }
+                    }
+
+                }
             }
         }
         else{

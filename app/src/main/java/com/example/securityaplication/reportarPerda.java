@@ -1,9 +1,12 @@
 package com.example.securityaplication;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
@@ -28,6 +31,8 @@ public class reportarPerda extends AppCompatActivity {
     SQLiteDatabase database;
     Cursor cursor;
     int idRecords;
+    PdfDocument documentoPdf;
+    int CODE_PERMISSION = 8;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +43,7 @@ public class reportarPerda extends AppCompatActivity {
         database = openOrCreateDatabase("database_sm", Context.MODE_PRIVATE, null);
         cursor = database.rawQuery("select * from tb_mats where (_id="+idRecords+")", null);
         if(!cursor.moveToFirst()){
-            Toast.makeText(getBaseContext(), "Houve algum erro, tente novamente mais tarde", Toast.LENGTH_LONG).show();
+            //Toast.makeText(getBaseContext(), "Houve algum erro, tente novamente mais tarde", Toast.LENGTH_LONG).show();
             Intent intentAc = new Intent(reportarPerda.this, MainActivity.class);
             startActivity(intent);
             database.close();
@@ -46,7 +51,7 @@ public class reportarPerda extends AppCompatActivity {
         }
     }
     public void CriaPdf(View view){
-
+        checarPermissao();
         cursor.moveToFirst();
         int id = cursor.getInt(0);
         String nome_item = cursor.getString(1);
@@ -66,13 +71,20 @@ public class reportarPerda extends AppCompatActivity {
             dirCreationState = 2;
         }
         if(!rootPath.exists()){
-            dirDocs="";
+           // dirDocs="";
+            rootPath = new File(Environment.getStorageDirectory()+dirDocs);
             rootPath.mkdirs();
             dirCreationState = 3;
         }
         if(!rootPath.exists()){
+            rootPath = getFilesDir();
             dirCreationState = 4;
         }
+        if(!rootPath.exists()){
+            absoluteFileName = new File(rootPath.getPath()+"/RelatoPerda_"+nome_item+id+".pdf");
+        }
+        absoluteFileName = new File(rootPath.getPath()+"/RelatoPerda_"+nome_item+id+".pdf");
+
         Log.i("estado de criação pasta", String.valueOf(dirCreationState));
         String pathImg = cursor.getString(2);
         Bitmap scaledBitmap, bmpImg;
@@ -85,7 +97,7 @@ public class reportarPerda extends AppCompatActivity {
         String linha2="Foi perdido, se alguém o encontra-lo, entre em contato para a devolução";
         String linha3="desse material o mais rápido possível.";
 
-        PdfDocument documentoPdf = new PdfDocument();
+        documentoPdf = new PdfDocument();
         PdfDocument.PageInfo detalhesDaPagina =
                 new PdfDocument.PageInfo.Builder(500, 600, 1).create();
 
@@ -125,6 +137,23 @@ public class reportarPerda extends AppCompatActivity {
     ShareFile(absoluteFileName.getAbsolutePath());
 
     }
+    private void checarPermissao(){
+        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            // Verifica necessidade de explicar necessidade da permissao
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                Toast.makeText(this,"É necessário a  de leitura e escrita!", Toast.LENGTH_SHORT).show();
+                ActivityCompat.requestPermissions(this,
+                        new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE, android.Manifest.permission.READ_EXTERNAL_STORAGE },
+                        CODE_PERMISSION);
+            } else {
+                // Solicita permissao
+                ActivityCompat.requestPermissions(this,
+                        new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE,  android.Manifest.permission.READ_EXTERNAL_STORAGE},
+                        CODE_PERMISSION);
+            }
+        }
+        return;
+    }
     private void ShareFile(String absoluteFileName){
         final Uri arquivo = Uri.fromFile(new File(absoluteFileName));
         final Intent _intent = new Intent();
@@ -137,7 +166,8 @@ public class reportarPerda extends AppCompatActivity {
 
             startActivity(Intent.createChooser(_intent, "Compartilhar"));
         }catch (Exception error){
-            Toast.makeText(getBaseContext(),"Ocorreu um erro ao criar o seu relatório", Toast.LENGTH_LONG).show();
+            //Toast.makeText(getBaseContext(),"Ocorreu um erro ao criar o seu relatório", Toast.LENGTH_LONG).show();
+
         }
     }
     public void btnHome(View view){

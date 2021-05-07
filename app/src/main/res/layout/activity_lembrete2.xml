@@ -29,6 +29,7 @@
         android:ems="10"
         android:hint="ANO"
         android:inputType="date"
+        android:maxLength="4"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textColorHint="#D3D3D3" />
@@ -43,6 +44,7 @@
         android:ems="10"
         android:hint="MES"
         android:inputType="date"
+        android:maxLength="2"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textColorHint="#D3D3D3" />
@@ -57,6 +59,7 @@
         android:ems="10"
         android:hint="DIA"
         android:inputType="date"
+        android:maxLength="2"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textColorHint="#D3D3D3" />
@@ -81,28 +84,30 @@
 
     <EditText
         android:id="@+id/txtHora"
-        android:background="#007F00"
         android:layout_width="wrap_content"
         android:layout_height="35dp"
         android:layout_marginTop="190dp"
         android:layout_toLeftOf="@id/positioner"
+        android:background="#007F00"
         android:ems="10"
         android:hint="HORA"
         android:inputType="time"
+        android:maxLength="2"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textColorHint="#D3D3D3" />
 
     <EditText
         android:id="@+id/TxtMin"
-        android:background="#bf6767"
         android:layout_width="wrap_content"
         android:layout_height="35dp"
         android:layout_marginTop="190dp"
         android:layout_toRightOf="@id/positioner"
+        android:background="#bf6767"
         android:ems="10"
         android:hint="MIN"
         android:inputType="time"
+        android:maxLength="2"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textColorHint="#D3D3D3" />

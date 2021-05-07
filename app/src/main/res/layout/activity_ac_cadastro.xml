@@ -34,12 +34,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
         android:layout_marginTop="40dp"
+        android:layout_marginRight="10dp"
         android:layout_toRightOf="@id/imageView"
         android:background="#FFFFFF"
         android:ems="10"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:maxLength="20" />
 
     <TextView
         android:id="@+id/txtRemove"
