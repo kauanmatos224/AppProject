@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.securityaplication">
+    package="com.example.safemonkey">
 
     <uses-permission android:name="android.permission.CAMERA" />
 
@@ -19,24 +19,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SecurityAplication">
-        <activity android:name=".update_activity">
+        <activity android:name="com.example.safemonkey.update_activity">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".reportarPerda">
+        <activity android:name="com.example.safemonkey.reportarPerda">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Lembrete" />
-        <activity android:name=".CallActivity" />
-        <activity android:name=".materiais_ac">
+        <activity android:name="com.example.safemonkey.Lembrete" />
+        <activity android:name="com.example.safemonkey.CallActivity" />
+        <activity android:name="com.example.safemonkey.materiais_ac">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity> <!-- Abaixo a activity de itens -->
-        <activity android:name=".Itens_ac">
+        <activity android:name="com.example.safemonkey.Itens_ac">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
@@ -48,35 +48,35 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <activity android:name=".ac_cadastro">
+        <activity android:name="com.example.safemonkey.ac_cadastro">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".splash">
+        <activity android:name="com.example.safemonkey.splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity">
+        <activity android:name="com.example.safemonkey.MainActivity">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivityAbacate">
+        <activity android:name="com.example.safemonkey.MainActivityAbacate">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".FullScreenActivity" />
+        <activity android:name="com.example.safemonkey.FullScreenActivity" />
         <activity
-            android:name=".LockScreenActivity"
+            android:name="com.example.safemonkey.LockScreenActivity"
             android:showOnLockScreen="true" />
 
         <receiver
-            android:name=".NotificationReceiver"
+            android:name="com.example.safemonkey.NotificationReceiver"
             android:enabled="true"
             android:exported="true" />
 

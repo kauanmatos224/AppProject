@@ -1,8 +1,6 @@
-package com.example.securityaplication;
+package com.example.safemonkey;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
@@ -24,6 +22,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.Toast;
+
+import com.example.safemonkey.R;
 
 import java.util.ArrayList;
 

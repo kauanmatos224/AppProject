@@ -1,4 +1,4 @@
-package com.example.securityaplication;
+package com.example.safemonkey;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,11 +8,11 @@ import android.content.Intent;
 import android.os.Handler;
 
 //imports para o banco de dados
-import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.widget.Toast;
+
+import com.example.safemonkey.R;
 //fim dos imports;
 
 

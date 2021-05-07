@@ -1,4 +1,4 @@
-package com.example.securityaplication;
+package com.example.safemonkey;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -21,8 +21,9 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.Toast;
+
+import com.example.safemonkey.R;
 
 import java.io.File;
 import java.io.FileOutputStream;

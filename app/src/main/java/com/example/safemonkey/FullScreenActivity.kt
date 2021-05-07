@@ -22,37 +22,15 @@
  * SOFTWARE.
  */
 
-package com.example.securityaplication;
+package com.example.safemonkey;
 
 
-import android.content.BroadcastReceiver
-import android.content.Context
-import android.content.Intent
-import android.os.Build
-import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
 
-
-class NotificationReceiver : BroadcastReceiver() {
-
-    @RequiresApi(Build.VERSION_CODES.O)
-    override fun onReceive(context: Context, intent: Intent) {
-        if(intent.getBooleanExtra(LOCK_SCREEN_KEY, true)) {
-            context.showNotificationWithFullScreenIntent(true)
-        } else {
-            context.showNotificationWithFullScreenIntent()
-        }
-    }
-
-    companion object {
-        fun build(context: Context, isLockScreen: Boolean): Intent {
-            return Intent(context, NotificationReceiver::class.java).also {
-                it.putExtra(LOCK_SCREEN_KEY, isLockScreen)
-            }
-        }
+class FullScreenActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_full_screen)
     }
 }
-
-private const val LOCK_SCREEN_KEY = "lockScreenKey"
-
-
-

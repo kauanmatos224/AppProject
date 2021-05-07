@@ -29,7 +29,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#000000"
-    tools:context=".MainActivityAbacate">
+    tools:context="com.example.safemonkey.MainActivityAbacate">
 
     <Button
         android:id="@+id/showFullScreenIntentLockScreenWithDelayButton"

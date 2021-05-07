@@ -1,4 +1,4 @@
-package com.example.securityaplication;
+package com.example.safemonkey;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.safemonkey.R;
 
 /**
  * A simple {@link Fragment} subclass.

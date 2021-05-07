@@ -1,4 +1,4 @@
-package com.example.securityaplication;
+package com.example.safemonkey;
 
 import android.graphics.Bitmap;
 

@@ -22,32 +22,37 @@
  * SOFTWARE.
  */
 
-package com.example.securityaplication
+package com.example.safemonkey;
 
+
+import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.Intent
 import android.os.Build
-import android.os.Bundle
-import android.util.Log
-import android.widget.Button
-import android.widget.Toast
 import androidx.annotation.RequiresApi
-import androidx.appcompat.app.AppCompatActivity
-import com.example.securityaplication.R
-import java.util.concurrent.TimeUnit
 
-class MainActivityAbacate : AppCompatActivity() {
+
+class NotificationReceiver : BroadcastReceiver() {
+
     @RequiresApi(Build.VERSION_CODES.O)
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.abacate)
-
-
-        findViewById<Button>(R.id.showFullScreenIntentLockScreenWithDelayButton).setOnClickListener {
-            scheduleNotification(true)
-            val intent = Intent(this, MainActivity::class.java).apply{};
-            startActivity(intent);
+    override fun onReceive(context: Context, intent: Intent) {
+        if(intent.getBooleanExtra(LOCK_SCREEN_KEY, true)) {
+            context.showNotificationWithFullScreenIntent(true)
+        } else {
+            context.showNotificationWithFullScreenIntent()
         }
+    }
 
+    companion object {
+        fun build(context: Context, isLockScreen: Boolean): Intent {
+            return Intent(context, NotificationReceiver::class.java).also {
+                it.putExtra(LOCK_SCREEN_KEY, isLockScreen)
+            }
+        }
     }
 }
+
+private const val LOCK_SCREEN_KEY = "lockScreenKey"
+
+
 

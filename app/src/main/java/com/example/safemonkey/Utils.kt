@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package com.example.securityaplication;
+package com.example.safemonkey;
 
 
 import android.app.NotificationChannel
