@@ -142,6 +142,7 @@ public class reportarPerda extends AppCompatActivity {
                     " set `status`='Perdido'" +
                     " where _id="+idRecords+";");
 
+            database.execSQL(sqlCommand.toString());
         }catch (Exception ex){
         }
         try{

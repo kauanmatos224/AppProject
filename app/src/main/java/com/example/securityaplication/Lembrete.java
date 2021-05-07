@@ -223,7 +223,7 @@ public class Lembrete extends AppCompatActivity {
         startActivity(intent);
     }
     private String getDate(){
-        DateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy");
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Date date = new Date();
         return dateFormat.format(date);
     }

@@ -120,6 +120,8 @@ public class update_activity extends AppCompatActivity {
                 img.setImageBitmap(bmpImg);
             } else {
                 img.setImageBitmap(bmpImg);
+                TextView txtR = (TextView)findViewById(R.id.txtRemove);
+                txtR.setVisibility(View.VISIBLE);
             }
             tNome.setText(cursor.getString(1));
             sStatus.setSelection(0);
@@ -206,7 +208,7 @@ public class update_activity extends AppCompatActivity {
     private void RemoveImg() {
         ImageView iv = (ImageView) findViewById(R.id.imageView);
 
-        Drawable drawable = getResources().getDrawable(R.drawable.sem_foto);
+        Drawable drawable = getResources().getDrawable(R.drawable.img_add);
         iv.setImageDrawable(drawable); //seta a imagem de seleção de foto do item (imagem padrão)
 
         TextView txtRemove = (TextView) findViewById(R.id.txtRemove);
