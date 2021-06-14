@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black"
-    tools:context="com.example.securitymaterial.update_activity">
+    tools:context="com.example.safemonkey.update_activity">
 
     <ImageView
         android:id="@+id/imageView"

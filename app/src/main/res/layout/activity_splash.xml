@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#000000"
-    tools:context="com.example.securitymaterial.splash">
+    tools:context="com.example.safemonkey.splash">
 
     <ImageView
         android:id="@+id/imageView2"
@@ -16,5 +16,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.427"
-        app:srcCompat="@drawable/logo_splash" />
+        app:srcCompat="@drawable/sm_splash" />
 </androidx.constraintlayout.widget.ConstraintLayout>

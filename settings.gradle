@@ -1,2 +1,2 @@
 include ':app'
-rootProject.name = "Security Material"
+rootProject.name = "Safe Monkey"
