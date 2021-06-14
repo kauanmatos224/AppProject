@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.safemonkey">
+    package="com.example.securitymaterial">
 
     <uses-permission android:name="android.permission.CAMERA" />
 
@@ -13,30 +13,30 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/sm_icon_"
+        android:icon="@drawable/logo"
         android:label="@string/app_name"
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SecurityAplication">
-        <activity android:name="com.example.safemonkey.update_activity">
+        <activity android:name="com.example.securitymaterial.update_activity">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.safemonkey.reportarPerda">
+        <activity android:name="com.example.securitymaterial.reportarPerda">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.safemonkey.Lembrete" />
-        <activity android:name="com.example.safemonkey.CallActivity" />
-        <activity android:name="com.example.safemonkey.materiais_ac">
+        <activity android:name="com.example.securitymaterial.Lembrete" />
+        <activity android:name="com.example.securitymaterial.CallActivity" />
+        <activity android:name="com.example.securitymaterial.materiais_ac">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity> <!-- Abaixo a activity de itens -->
-        <activity android:name="com.example.safemonkey.Itens_ac">
+        <activity android:name="com.example.securitymaterial.Itens_ac">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
@@ -48,35 +48,35 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <activity android:name="com.example.safemonkey.ac_cadastro">
+        <activity android:name="com.example.securitymaterial.ac_cadastro">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.safemonkey.splash">
+        <activity android:name="com.example.securitymaterial.splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.safemonkey.MainActivity">
+        <activity android:name="com.example.securitymaterial.MainActivity">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.safemonkey.MainActivityAbacate">
+        <activity android:name="com.example.securitymaterial.MainActivityAbacate">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.safemonkey.FullScreenActivity" />
+        <activity android:name="com.example.securitymaterial.FullScreenActivity" />
         <activity
-            android:name="com.example.safemonkey.LockScreenActivity"
+            android:name="com.example.securitymaterial.LockScreenActivity"
             android:showOnLockScreen="true" />
 
         <receiver
-            android:name="com.example.safemonkey.NotificationReceiver"
+            android:name="com.example.securitymaterial.NotificationReceiver"
             android:enabled="true"
             android:exported="true" />
 
