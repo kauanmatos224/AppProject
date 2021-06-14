@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Safe Monkey</string>
+    <string name="app_name">Security Aplication</string>
     <string name="sqlVerTabela">SELECT EXISTS (SELECT 1 FROM tb_mats)</string>
     <string name="show_full_screen_intent_button">Show Full Screen Intent</string>
     <string name="show_scheduled_full_screen_intent">Scheduled full screen intent</string>

@@ -1,5 +1,6 @@
-package com.example.safemonkey;
+package com.example.securityaplication;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -8,6 +9,7 @@ import androidx.core.content.ContextCompat;
 import android.Manifest;
 
 //imports para utilizar Intent e Widgets em código.
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -16,8 +18,11 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -27,17 +32,21 @@ import android.widget.Toast;
 
 //imports para o banco de dados
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 //imports para tranformar bitmap em byte.
-import com.example.safemonkey.R;
-
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.nio.channels.FileChannel;
+import java.util.Arrays;
+
+import static android.content.Context.MODE_PRIVATE;
 
 
 public class ac_cadastro extends AppCompatActivity {

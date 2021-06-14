@@ -1,4 +1,4 @@
-package com.example.safemonkey;
+package com.example.securityaplication;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,11 +14,10 @@ import android.widget.Toast;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.safemonkey.R;
-
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.Date;
 

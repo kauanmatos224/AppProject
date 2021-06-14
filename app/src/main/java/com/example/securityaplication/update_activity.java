@@ -1,4 +1,4 @@
-package com.example.safemonkey;
+package com.example.securityaplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -17,16 +17,18 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.strictmode.SqliteObjectLeakedViolation;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.safemonkey.R;
+import org.w3c.dom.Text;
 
 import java.io.File;
 import java.io.FileInputStream;

@@ -1,16 +1,14 @@
-package com.example.safemonkey;
+package com.example.securityaplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-import com.example.safemonkey.R;
-
-public class materiais_ac extends AppCompatActivity {
+public class CallActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_materiais_ac);
+        setContentView(R.layout.activity_call);
     }
 }

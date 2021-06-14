@@ -1,7 +1,8 @@
-package com.example.safemonkey;
+package com.example.securityaplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
@@ -12,8 +13,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
-
-import com.example.safemonkey.R;
+import android.os.Bundle;
 
 public class Itens_ac extends AppCompatActivity {
     SQLiteDatabase db;

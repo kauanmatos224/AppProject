@@ -1,11 +1,14 @@
-package com.example.safemonkey;
+package com.example.securityaplication;
 
 
 import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
 import android.os.Build
+import android.util.Log
 import androidx.annotation.RequiresApi
+import java.util.concurrent.TimeUnit
+
 
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -26,7 +29,7 @@ private fun Context.getReceiver(isLockScreen: Boolean): PendingIntent {
     return PendingIntent.getBroadcast(
         this,
         0,
-            NotificationReceiver.build(this, isLockScreen),
+        NotificationReceiver.build(this, isLockScreen),
         0
     )
 }

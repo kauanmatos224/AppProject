@@ -22,21 +22,16 @@
  * SOFTWARE.
  */
 
-package com.example.safemonkey
+package com.example.securityaplication;
 
 
-import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import com.example.securityaplication.R
 
-class LockScreenActivity : AppCompatActivity() {
+class FullScreenActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_lock_screen)
-        turnScreenOnAndKeyguardOff()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        turnScreenOffAndKeyguardOn()
+        setContentView(R.layout.activity_full_screen)
     }
 }

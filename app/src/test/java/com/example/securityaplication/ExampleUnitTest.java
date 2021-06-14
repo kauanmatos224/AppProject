@@ -1,4 +1,4 @@
-package com.example.safemonkey;
+package com.example.securityaplication;
 
 import org.junit.Test;
 
