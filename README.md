@@ -1,7 +1,7 @@
 # Security Material
 Mobile Aplication Project
 
-#APPLICATION TO FACILITATE THE MANAGEMENT OF THE STUDENT'S SCHOOL SUPPLIES.
+# MOBILE APP TO FACILITATE THE MANAGEMENT OF THE STUDENT'S SCHOOL SUPPLIES.
 
 Application to facilitate the management of student's school supplies.
 
